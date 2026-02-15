@@ -108,7 +108,7 @@ Filename_From_Asset_Name (const char *asset_name)
 		//
 		// Copy the model name into a new filename buffer
 		//
-		::lstrcpy (filename.Get_Buffer (::lstrlen (asset_name) + 5), asset_name);
+		::strcpy (filename.Get_Buffer (::strlen (asset_name) + 5), asset_name);
 
 		//
 		// Do we need to strip off the model's suffix?
@@ -1152,7 +1152,11 @@ void RenderObjClass::Add_Dependencies_To_List
 		const HTreeClass *phtree = Get_HTree ();
 		if (phtree != nullptr) {
 			const char *htree_name = phtree->Get_Name ();
+#ifdef _ANDROID
+			if (::strcasecmp (htree_name, model_name) != 0) {
+#else
 			if (::lstrcmpi (htree_name, model_name) != 0) {
+#endif
 
 				//
 				// Add this file to the list

@@ -1,0 +1,71 @@
+-- The C compiler identification is Clang 17.0.2
+-- The CXX compiler identification is Clang 17.0.2
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/devacc/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/devacc/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- CMAKE_CXX_COMPILER: C:/Users/devacc/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe
+-- CMAKE_CXX_COMPILER_ID: Clang
+-- CMAKE_CXX_COMPILER_VERSION: 17.0.2
+-- CMAKE_INSTALL_PREFIX: C:/Program Files (x86)/genzh
+-- Configuring for Android (arm64-v8a)
+-- Populating lzhl
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/lzhl-subbuild
+[1/9] Creating directories for 'lzhl-populate'
+[1/9] Performing download step (git clone) for 'lzhl-populate'
+[2/9] Performing update step for 'lzhl-populate'
+-- Already at requested ref: dfd96e2ca64adaddb35dd4ebadd6add7d5586783
+[3/9] No patch step for 'lzhl-populate'
+[5/9] No configure step for 'lzhl-populate'
+[6/9] No build step for 'lzhl-populate'
+[7/9] No install step for 'lzhl-populate'
+[8/9] No test step for 'lzhl-populate'
+[9/9] Completed 'lzhl-populate'
+-- Found ZLIB: C:/Users/devacc/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/libz.so (found version "1.2.13")
+-- Zero Hour install path not found. Registry keys for 'Command and Conquer Generals Zero Hour' not found. Zero Hour targets will be built, but not installed. You can specify the path manually by setting RTS_INSTALL_PREFIX_ZEROHOUR.
+-- Generals install path not found. Registry keys for 'Generals' not found. Generals targets will be built, but not installed. You can specify the path manually by setting RTS_INSTALL_PREFIX_GENERALS.
+-- Enabled features:
+ * CoreTools, Build Core Mod Tools
+ * ZeroHourStuff, Build Zero Hour code
+ * GeneralsStuff, Build Generals code
+ * ZeroHourTools, Build Zero Hour Mod Tools
+ * GeneralsTools, Build Generals Mod Tools
+ * GameMemoryEnable, Build with the original game memory implementation
+ * MemoryPoolMpsbDlink, Build with Memory Pool backlink
+ * MemoryPoolDebug, Build with Memory Pool debug
+ * MemoryPoolDebugCustomNew, Build with Memory Pool custom new
+ * MemoryPoolDebugBoundingwall, Build with Memory Pool Bounding Wall
+ * CrashDumpEnable, Build with Crash Dumps
+
+-- Disabled features:
+ * CoreExtras, Build Core Extra Tools/Tests
+ * ProfileBuild, Building as a "Profile" build
+ * DebugBuild, Building as a "Debug" build
+ * AddressSanitizer, Building with address sanitizer
+ * Vc6FullDebug, Building VC6 with full debug info
+ * FFmpegSupport, Building with FFmpeg support
+ * ZeroHourExtras, Build Zero Hour Extra Tools/Tests
+ * ZeroHourDocs, Build Zero Hour Documentation
+ * GeneralsExtras, Build Generals Extra Tools/Tests
+ * GeneralsDocs, Build Generals Documentation
+ * DebugCheats, Build with Debug Cheats in release builds
+ * DebugIncludeDebugLogInCrcLog, Build with Debug Logging in CRC log
+ * DebugMultiInstance, Build with Multi Client Instance support
+ * MemoryPoolOverrideMalloc, Build with Memory Pool malloc
+ * MemoryPoolDebugCheckpointing, Build with Memory Pool checkpointing
+ * MemoryPoolDebugStacktrace, Build with Memory Pool Stacktrace
+ * MemoryPoolDebugIntenseVerify, Build with Memory Pool intense verify
+ * MemoryPoolDebugCheckBlockOwnership, Build with Memory Pool block ownership checks
+ * MemoryPoolDebugIntenseDmaBookkeeping, Build with Memory Pool intense DMA bookkeeping
+
+-- Configuring done (12.1s)
+-- Generating done (2.4s)
+-- Build files have been written to: C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a

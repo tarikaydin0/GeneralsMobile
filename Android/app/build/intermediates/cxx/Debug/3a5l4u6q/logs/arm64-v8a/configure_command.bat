@@ -1,0 +1,20 @@
+@echo off
+"C:\\Users\\devacc\\AppData\\Local\\Android\\Sdk\\cmake\\3.31.6\\bin\\cmake.exe" ^
+  "-HC:\\Users\\devacc\\Desktop\\repo\\generals" ^
+  "-DCMAKE_SYSTEM_NAME=Android" ^
+  "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+  "-DCMAKE_SYSTEM_VERSION=26" ^
+  "-DANDROID_PLATFORM=android-26" ^
+  "-DANDROID_ABI=arm64-v8a" ^
+  "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a" ^
+  "-DANDROID_NDK=C:\\Users\\devacc\\AppData\\Local\\Android\\Sdk\\ndk\\26.1.10909125" ^
+  "-DCMAKE_ANDROID_NDK=C:\\Users\\devacc\\AppData\\Local\\Android\\Sdk\\ndk\\26.1.10909125" ^
+  "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\devacc\\AppData\\Local\\Android\\Sdk\\ndk\\26.1.10909125\\build\\cmake\\android.toolchain.cmake" ^
+  "-DCMAKE_MAKE_PROGRAM=C:\\Users\\devacc\\AppData\\Local\\Android\\Sdk\\cmake\\3.31.6\\bin\\ninja.exe" ^
+  "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\build\\intermediates\\cxx\\Debug\\3a5l4u6q\\obj\\arm64-v8a" ^
+  "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\build\\intermediates\\cxx\\Debug\\3a5l4u6q\\obj\\arm64-v8a" ^
+  "-DCMAKE_BUILD_TYPE=Debug" ^
+  "-DCMAKE_FIND_ROOT_PATH=C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\.cxx\\Debug\\3a5l4u6q\\prefab\\arm64-v8a\\prefab" ^
+  "-BC:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\.cxx\\Debug\\3a5l4u6q\\arm64-v8a" ^
+  -GNinja ^
+  "-DANDROID_STL=c++_shared"

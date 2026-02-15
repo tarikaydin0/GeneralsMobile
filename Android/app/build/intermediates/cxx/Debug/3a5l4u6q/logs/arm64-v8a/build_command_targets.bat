@@ -1,0 +1,20 @@
+@echo off
+"C:\\Users\\devacc\\AppData\\Local\\Android\\Sdk\\cmake\\3.31.6\\bin\\ninja.exe" ^
+  -C ^
+  "C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\.cxx\\Debug\\3a5l4u6q\\arm64-v8a" ^
+  core_debugwindow ^
+  core_particleeditor ^
+  g_generals ^
+  g_guiedit ^
+  g_imagepacker ^
+  g_mapcachebuilder ^
+  g_w3dview ^
+  g_worldbuilder ^
+  generals_mobile ^
+  z_generals ^
+  z_guiedit ^
+  z_imagepacker ^
+  z_mapcachebuilder ^
+  z_w3dview ^
+  z_wdump ^
+  z_worldbuilder

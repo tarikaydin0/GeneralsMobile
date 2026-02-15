@@ -100,12 +100,13 @@ template<class T, int CHUNKID> PersistClass *
 SimplePersistFactoryClass<T,CHUNKID>::Load(ChunkLoadClass & cload) const
 {
 	T * new_obj = W3DNEW T;
-	T * old_obj = nullptr;
-
+	uint32 old_obj_id = 0;
 	cload.Open_Chunk();
 	WWASSERT(cload.Cur_Chunk_ID() == SIMPLEFACTORY_CHUNKID_OBJPOINTER);
-	cload.Read(&old_obj,sizeof(T *));
+	cload.Read(&old_obj_id,sizeof(uint32));
 	cload.Close_Chunk();
+
+	T * old_obj = (T *)(uintptr_t)old_obj_id;
 
 	cload.Open_Chunk();
 	WWASSERT(cload.Cur_Chunk_ID() == SIMPLEFACTORY_CHUNKID_OBJDATA);
@@ -120,7 +121,7 @@ SimplePersistFactoryClass<T,CHUNKID>::Load(ChunkLoadClass & cload) const
 template<class T, int CHUNKID> void
 SimplePersistFactoryClass<T,CHUNKID>::Save(ChunkSaveClass & csave,PersistClass * obj) const
 {
-	uint32 objptr = (uint32)obj;
+	uint32 objptr = (uint32)(uintptr_t)obj;
 	csave.Begin_Chunk(SIMPLEFACTORY_CHUNKID_OBJPOINTER);
 	csave.Write(&objptr,sizeof(uint32));
 	csave.End_Chunk();

@@ -41,6 +41,9 @@
 #define DEFINE_PANNING_NAMES
 
 #include "Common/AddonCompat.h"
+
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+
 #include "Common/crc.h"
 #include "Common/file.h"
 #include "Common/FileSystem.h"

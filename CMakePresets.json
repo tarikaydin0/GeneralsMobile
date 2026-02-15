@@ -190,6 +190,17 @@
             "cacheVariables": {
                 "RTS_BUILD_OPTION_PROFILE": "ON"
             }
+        },
+        {
+            "name": "android-arm64",
+            "displayName": "Android ARM64 Release",
+            "generator": "Ninja",
+            "hidden": false,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "toolchainFile": "${sourceDir}/cmake/toolchains/android.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
         }
     ],
     "buildPresets": [
@@ -289,6 +300,12 @@
             "configurePreset": "mingw-w64-i686-profile",
             "displayName": "Build MinGW-w64 32-bit (i686) Profile",
             "description": "Build MinGW-w64 32-bit (i686) Profile"
+        },
+        {
+            "name": "android-arm64",
+            "configurePreset": "android-arm64",
+            "displayName": "Build Android ARM64 Release",
+            "description": "Build Android ARM64 Release"
         }
     ],
     "workflowPresets": [
@@ -484,6 +501,19 @@
                 {
                     "type": "build",
                     "name": "mingw-w64-i686-profile"
+                }
+            ]
+        },
+        {
+            "name": "android-arm64",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "android-arm64"
+                },
+                {
+                    "type": "build",
+                    "name": "android-arm64"
                 }
             ]
         }

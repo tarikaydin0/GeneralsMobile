@@ -459,3 +459,7 @@ void UpdateSlotList( GameInfo *myGame, GameWindow *comboPlayer[],
 }
 
 // -----------------------------------------------------------------------------
+
+// Stub for GameSpy Chat Interface
+GameSpyChatInterface *TheGameSpyChat = nullptr;
+

@@ -23,6 +23,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // FILE: PopupReplay.cpp /////////////////////////////////////////////////////////
+
+#include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
+#include "GameClient/WindowLayout.h"
+
+void ShowReplaySavedPopup(Bool show) {}
+void PopupReplayInit( WindowLayout *layout, void *userData ) {}
+void PopupReplayShutdown( WindowLayout *layout, void *userData ) {}
+void PopupReplayUpdate( WindowLayout *layout, void *userData ) {}
+WindowMsgHandledType PopupReplayInput( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 ) { return MSG_IGNORED; }
+WindowMsgHandledType PopupReplaySystem( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 ) { return MSG_IGNORED; }
+
+
+////////////////////////////////////////////////////////////////////////////////
+//																																						//
+//  (c) 2001-2003 Electronic Arts Inc.																				//
+//																																						//
+////////////////////////////////////////////////////////////////////////////////
+
+// FILE: PopupReplay.cpp /////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
 //
 //                       Electronic Arts Pacific.

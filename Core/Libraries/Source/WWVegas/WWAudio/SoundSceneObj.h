@@ -123,7 +123,7 @@ class SoundSceneObjClass : public MultiListObjectClass, public PersistClass, pub
 		//////////////////////////////////////////////////////////////////////
 		//	Event handling
 		//////////////////////////////////////////////////////////////////////
-		virtual void			On_Event (AudioCallbackClass::EVENTS event, uint32 param1 = 0, uint32 param2 = 0);
+		virtual void			On_Event (AudioCallbackClass::EVENTS event, UINTPTR param1 = 0, UINTPTR param2 = 0);
 		virtual void			Register_Callback (AudioCallbackClass::EVENTS events, AudioCallbackClass *callback);
 
 		//////////////////////////////////////////////////////////////////////
@@ -225,8 +225,8 @@ __inline void
 SoundSceneObjClass::On_Event
 (
 	AudioCallbackClass::EVENTS	event,
-	uint32							param1,
-	uint32							param2
+	UINTPTR							param1,
+	UINTPTR							param2
 )
 {
 	if ((m_pCallback != nullptr) && (m_RegisteredEvents & event)) {
@@ -243,6 +243,8 @@ SoundSceneObjClass::On_Event
 
 			case AudioCallbackClass::EVENT_LOGICAL_HEARD:
 				m_pCallback->On_Logical_Heard ((LogicalListenerClass *)param1, (LogicalSoundClass *)param2);
+				break;
+			case AudioCallbackClass::EVENT_NONE:
 				break;
 		}
 	}

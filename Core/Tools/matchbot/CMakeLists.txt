@@ -72,7 +72,7 @@ target_include_directories(core_matchbot PRIVATE
 
 target_link_libraries(core_matchbot PRIVATE
     corei_always
-    gamespy::gamespy
+    # gamespy::gamespy
     stlport
 )
 

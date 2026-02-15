@@ -120,6 +120,35 @@
 #include "framgrab.h"
 
 
+
+#ifndef _WIN32
+#pragma pack(push, 2)
+typedef struct tagBITMAPFILEHEADER {
+  unsigned short bfType;
+  unsigned int   bfSize;
+  unsigned short bfReserved1;
+  unsigned short bfReserved2;
+  unsigned int   bfOffBits;
+} BITMAPFILEHEADER;
+#pragma pack(pop)
+
+typedef struct tagBITMAPINFOHEADER {
+  unsigned int   biSize;
+  long           biWidth;
+  long           biHeight;
+  unsigned short biPlanes;
+  unsigned short biBitCount;
+  unsigned int   biCompression;
+  unsigned int   biSizeImage;
+  long           biXPelsPerMeter;
+  long           biYPelsPerMeter;
+  unsigned int   biClrUsed;
+  unsigned int   biClrImportant;
+} BITMAPINFOHEADER;
+
+#define BI_RGB        0L
+#endif
+
 const char* DAZZLE_INI_FILENAME="DAZZLE.INI";
 
 #define DEFAULT_DEBUG_SHADER_BITS	(		SHADE_CNST(\
@@ -160,7 +189,7 @@ const char* DAZZLE_INI_FILENAME="DAZZLE.INI";
 **
 ***********************************************************************************/
 
-float														WW3D::LogicFrameTimeMs = 1000.0f / WWSyncPerSecond; // initialized to something to avoid division by zero on first use
+float														WW3D::LogicFrameTimeMs = 1000.0f / (float)WWSyncPerSecond; // initialized to something to avoid division by zero on first use
 float															WW3D::FractionalSyncMs = 0.0f;
 unsigned int											WW3D::SyncTime = 0;
 unsigned int											WW3D::PreviousSyncTime = 0;

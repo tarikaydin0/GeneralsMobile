@@ -546,10 +546,17 @@ void DX8Caps::Compute_Caps(WW3DFormat display_format, const D3DADAPTER_IDENTIFIE
 	DXLOG(("Driver: %s\r\n",adapter_id.Driver));
 
 	DriverDLL=adapter_id.Driver;
+#ifdef _WIN32
 	int Product = HIWORD(adapter_id.DriverVersion.HighPart);
 	int Version = LOWORD(adapter_id.DriverVersion.HighPart);
 	int SubVersion = HIWORD(adapter_id.DriverVersion.LowPart);
 	DriverBuildVersion = LOWORD(adapter_id.DriverVersion.LowPart);
+#else
+	int Product = HIWORD(adapter_id.DriverVersionHighPart);
+	int Version = LOWORD(adapter_id.DriverVersionHighPart);
+	int SubVersion = HIWORD(adapter_id.DriverVersionLowPart);
+	DriverBuildVersion = LOWORD(adapter_id.DriverVersionLowPart);
+#endif
 
 	DXLOG(("Product=%d, Version=%d, SubVersion=%d, Build=%d\r\n",Product, Version, SubVersion, DriverBuildVersion));
 

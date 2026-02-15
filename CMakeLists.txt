@@ -55,6 +55,23 @@ if((WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows") AND ${CMAKE_SIZEOF_VOID_P} EQU
     include(cmake/dx8.cmake)
 endif()
 
+if(ANDROID)
+    set(RTS_PLATFORM_ANDROID ON)
+    message(STATUS "Configuring for Android (${CMAKE_ANDROID_ARCH_ABI})")
+    
+    find_library(log-lib log)
+    find_library(android-lib android)
+    find_library(egl-lib EGL)
+    find_library(glesv3-lib GLESv3)
+    find_library(opensles-lib OpenSLES)
+    
+    find_package(game-activity REQUIRED CONFIG)
+    find_package(oboe REQUIRED CONFIG)
+    
+    # Disable PCH globally for Android to avoid build synchronization issues
+    set(CMAKE_DISABLE_PRECOMPILE_HEADERS ON)
+endif()
+
 # Define a dummy stlport target when not on VC6.
 if (IS_VS6_BUILD)
     include(cmake/stlport.cmake)
@@ -63,7 +80,7 @@ else()
 endif()
 
 include(cmake/config.cmake)
-include(cmake/gamespy.cmake)
+# include(cmake/gamespy.cmake)
 include(cmake/lzhl.cmake)
 
 if (IS_VS6_BUILD)
@@ -90,6 +107,29 @@ endif()
 
 if(RTS_BUILD_GENERALS)
     add_subdirectory(Generals)
+endif()
+
+if(ANDROID)
+    add_library(generals_mobile SHARED Android/app/src/main/jni/android_main.cpp)
+    target_link_libraries(generals_mobile PRIVATE
+        g_gameengine
+        g_gameenginedevice
+        gi_always
+        log-lib
+        android-lib
+        egl-lib
+        glesv3-lib
+        opensles-lib
+        game-activity::game-activity_static
+        oboe::oboe
+    )
+    
+    target_include_directories(generals_mobile PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_BINARY_DIR}
+    )
+    
+    target_compile_features(generals_mobile PRIVATE cxx_std_20)
 endif()
 
 feature_summary(WHAT ENABLED_FEATURES DESCRIPTION "Enabled features:")

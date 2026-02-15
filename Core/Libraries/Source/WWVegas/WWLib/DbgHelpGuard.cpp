@@ -24,26 +24,34 @@
 DbgHelpGuard::DbgHelpGuard()
 	: m_needsUnload(false)
 {
+#ifdef _WIN32
 	activate();
+#endif
 }
 
 DbgHelpGuard::~DbgHelpGuard()
 {
+#ifdef _WIN32
 	deactivate();
+#endif
 }
 
 void DbgHelpGuard::activate()
 {
+#ifdef _WIN32
 	// Front load the DLL now to prevent other code from loading the potentially wrong DLL.
 	DbgHelpLoader::load();
 	m_needsUnload = true;
+#endif
 }
 
 void DbgHelpGuard::deactivate()
 {
+#ifdef _WIN32
 	if (m_needsUnload)
 	{
 		DbgHelpLoader::unload();
 		m_needsUnload = false;
 	}
+#endif
 }

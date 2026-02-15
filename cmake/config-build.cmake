@@ -64,6 +64,10 @@ if(UNIX)
     target_compile_definitions(core_config INTERFACE _UNIX)
 endif()
 
+if(ANDROID)
+    target_compile_definitions(core_config INTERFACE _ANDROID)
+endif()
+
 if(RTS_BUILD_OPTION_DEBUG)
     target_compile_definitions(core_config INTERFACE RTS_DEBUG WWDEBUG DEBUG)
 else()

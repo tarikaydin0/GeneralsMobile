@@ -25,7 +25,7 @@ target_link_libraries(corei_patchgrabber INTERFACE
     comctl32
     core_debug
     core_profile
-    gamespy::gamespy
+    # gamespy::gamespy
     imm32
     vfw32
     winmm

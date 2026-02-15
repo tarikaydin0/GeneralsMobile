@@ -81,11 +81,8 @@ set(GAMEENGINEDEVICE_SRC
 #    Include/W3DDevice/GameLogic/W3DGameLogic.h
 #    Include/W3DDevice/GameLogic/W3DGhostObject.h
 #    Include/W3DDevice/GameLogic/W3DTerrainLogic.h
-    Include/Win32Device/Common/Win32BIGFile.h
-    Include/Win32Device/Common/Win32BIGFileSystem.h
-#    Include/Win32Device/Common/Win32GameEngine.h
-    Include/Win32Device/Common/Win32LocalFile.h
-    Include/Win32Device/Common/Win32LocalFileSystem.h
+#    Include/W3DDevice/GameLogic/W3DTerrainLogic.h
+
 #    Include/Win32Device/GameClient/Win32DIKeyboard.h
 #    Include/Win32Device/GameClient/Win32DIMouse.h
 #    Include/Win32Device/GameClient/Win32Mouse.h
@@ -181,16 +178,26 @@ set(GAMEENGINEDEVICE_SRC
 #    Source/W3DDevice/GameLogic/W3DGameLogic.cpp
 #    Source/W3DDevice/GameLogic/W3DGhostObject.cpp
 #    Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp
-    Source/Win32Device/Common/Win32BIGFile.cpp
-    Source/Win32Device/Common/Win32BIGFileSystem.cpp
-#    Source/Win32Device/Common/Win32GameEngine.cpp
-    Source/Win32Device/Common/Win32LocalFile.cpp
-    Source/Win32Device/Common/Win32LocalFileSystem.cpp
+#    Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp
+
 #    Source/Win32Device/Common/Win32OSDisplay.cpp
 #    Source/Win32Device/GameClient/Win32DIKeyboard.cpp
     #Source/Win32Device/GameClient/Win32DIMouse.cpp
 #    Source/Win32Device/GameClient/Win32Mouse.cpp
 )
+
+if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
+    list(APPEND GAMEENGINEDEVICE_SRC
+        Include/Win32Device/Common/Win32BIGFile.h
+        Include/Win32Device/Common/Win32BIGFileSystem.h
+        Include/Win32Device/Common/Win32LocalFile.h
+        Include/Win32Device/Common/Win32LocalFileSystem.h
+        Source/Win32Device/Common/Win32BIGFile.cpp
+        Source/Win32Device/Common/Win32BIGFileSystem.cpp
+        Source/Win32Device/Common/Win32LocalFile.cpp
+        Source/Win32Device/Common/Win32LocalFileSystem.cpp
+    )
+endif()
 
 # Add C++ 17 FileSystem implementation for non-VS6 builds
 if(NOT IS_VS6_BUILD)

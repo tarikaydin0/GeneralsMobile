@@ -299,9 +299,9 @@ bool DX8Wrapper::Init(void * hwnd, bool lite)
 
 	for (int light=0;light<4;++light) CurrentDX8LightEnables[light]=false;
 
-	::ZeroMemory(&old_world, sizeof(D3DMATRIX));
-	::ZeroMemory(&old_view, sizeof(D3DMATRIX));
-	::ZeroMemory(&old_prj, sizeof(D3DMATRIX));
+	ZeroMemory(&old_world, sizeof(D3DMATRIX));
+	ZeroMemory(&old_view, sizeof(D3DMATRIX));
+	ZeroMemory(&old_prj, sizeof(D3DMATRIX));
 
 	//old_vertex_shader; TODO
 	//old_sr_shader;
@@ -319,12 +319,14 @@ bool DX8Wrapper::Init(void * hwnd, bool lite)
 	Invalidate_Cached_Render_States();
 
 	if (!lite) {
+#ifndef _ANDROID
 		D3D8Lib = LoadLibrary("D3D8.DLL");
 
 		if (D3D8Lib == nullptr) return false;	// Return false at this point if init failed
 
 		Direct3DCreate8Ptr = (Direct3DCreate8Type) GetProcAddress(D3D8Lib, "Direct3DCreate8");
 		if (Direct3DCreate8Ptr == nullptr) return false;
+#endif
 
 		/*
 		** Create the D3D interface object
@@ -335,7 +337,11 @@ bool DX8Wrapper::Init(void * hwnd, bool lite)
 			// the graphics driver from potentially loading the old game dbghelp.dll and then crashing the game process.
 			DbgHelpGuard dbgHelpGuard;
 
+#ifdef _ANDROID
+			D3DInterface = Direct3DCreate8(D3D_SDK_VERSION);
+#else
 			D3DInterface = Direct3DCreate8Ptr(D3D_SDK_VERSION);		// TODO: handle failure cases...
+#endif
 		}
 		if (D3DInterface == nullptr) {
 			return(false);
@@ -385,10 +391,12 @@ void DX8Wrapper::Shutdown(void)
 		D3DInterface=nullptr;
 	}
 
+#ifndef _ANDROID
 	if (D3D8Lib) {
 		FreeLibrary(D3D8Lib);
 		D3D8Lib = nullptr;
 	}
+#endif
 
 	_RenderDeviceNameTable.Clear();		 // note - Delete_All() resizes the vector, causing a reallocation.  Clear is better. jba.
 	_RenderDeviceShortNameTable.Clear();
@@ -745,7 +753,7 @@ void DX8Wrapper::Enumerate_Devices()
 	for (int adapter_index=0; adapter_index<adapter_count; adapter_index++) {
 
 		D3DADAPTER_IDENTIFIER8 id;
-		::ZeroMemory(&id, sizeof(D3DADAPTER_IDENTIFIER8));
+		ZeroMemory(&id, sizeof(D3DADAPTER_IDENTIFIER8));
 		HRESULT res = D3DInterface->GetAdapterIdentifier(adapter_index,D3DENUM_NO_WHQL_LEVEL,&id);
 
 		if (res == D3D_OK) {
@@ -760,10 +768,17 @@ void DX8Wrapper::Enumerate_Devices()
 
 			char buf[64];
 			sprintf(buf,"%d.%d.%d.%d", //"%04x.%04x.%04x.%04x",
+#ifdef _WIN32
 				HIWORD(id.DriverVersion.HighPart),
 				LOWORD(id.DriverVersion.HighPart),
 				HIWORD(id.DriverVersion.LowPart),
 				LOWORD(id.DriverVersion.LowPart));
+#else
+				HIWORD(id.DriverVersionHighPart),
+				LOWORD(id.DriverVersionHighPart),
+				HIWORD(id.DriverVersionLowPart),
+				LOWORD(id.DriverVersionLowPart));
+#endif
 
 			desc.set_driver_version(buf);
 
@@ -779,7 +794,7 @@ void DX8Wrapper::Enumerate_Devices()
 			int mode_count = D3DInterface->GetAdapterModeCount(adapter_index);
 			for (int mode_index=0; mode_index<mode_count; mode_index++) {
 				D3DDISPLAYMODE d3dmode;
-				::ZeroMemory(&d3dmode, sizeof(D3DDISPLAYMODE));
+				ZeroMemory(&d3dmode, sizeof(D3DDISPLAYMODE));
 				HRESULT res = D3DInterface->EnumAdapterModes(adapter_index,mode_index,&d3dmode);
 
 				if (res == D3D_OK) {
@@ -917,6 +932,7 @@ void DX8Wrapper::Get_Format_Name(unsigned int format, StringClass *tex_format)
 
 void DX8Wrapper::Resize_And_Position_Window()
 {
+#ifndef _ANDROID
 	// Get the current dimensions of the 'render area' of the window
 	RECT rect = { 0 };
 	::GetClientRect (_Hwnd, &rect);
@@ -958,15 +974,23 @@ void DX8Wrapper::Resize_And_Position_Window()
 			RECT rectClient;
 			rectClient.left = left - rect.left;
 			rectClient.top = top - rect.top;
-			rectClient.right = rectClient.left + ResolutionWidth;
-			rectClient.bottom = rectClient.top + ResolutionHeight;
-			MoveRectIntoOtherRect(rectClient, mi.rcMonitor, &left, &top);
+			rectClient.right = rectClient.left + width;
+			rectClient.bottom = rectClient.top + height;
 
-			::SetWindowPos (_Hwnd, nullptr, left, top, width, height, SWP_NOZORDER);
+			RECT rectMonitor;
+			rectMonitor.left = mi.rcWork.left;
+			rectMonitor.top = mi.rcWork.top;
+			rectMonitor.right = mi.rcWork.right;
+			rectMonitor.bottom = mi.rcWork.bottom;
 
-			DEBUG_LOG(("Window positioned to x:%d y:%d, resized to w:%d h:%d", left, top, width, height));
+			MoveRectIntoOtherRect(rectClient, rectMonitor, &left, &top);
+
+			::SetWindowPos(_Hwnd, HWND_TOPMOST, left, top, width, height, SWP_NOSIZE);
+
+			DEBUG_LOG(("Window resized to w:%d h:%d", width, height));
 		}
 	}
+#endif
 }
 
 bool DX8Wrapper::Set_Render_Device(int dev, int width, int height, int bits, int windowed,
@@ -1141,6 +1165,7 @@ bool DX8Wrapper::Set_Next_Render_Device(void)
 
 bool DX8Wrapper::Toggle_Windowed(void)
 {
+#ifndef _ANDROID
 #ifdef WW3D_DX8
 	// State OK?
 	assert (IsInitted);
@@ -1182,6 +1207,7 @@ bool DX8Wrapper::Toggle_Windowed(void)
 		}
 	}
 #endif //WW3D_DX8
+#endif
 
 	return false;
 }
@@ -1307,14 +1333,19 @@ void DX8Wrapper::Get_Render_Target_Resolution(int & set_w,int & set_h,int & set_
 
 bool DX8Wrapper::Registry_Save_Render_Device( const char * sub_key )
 {
+#ifndef _ANDROID
 	int	width, height, depth;
 	bool	windowed;
 	Get_Device_Resolution(width, height, depth, windowed);
 	return Registry_Save_Render_Device(sub_key, CurRenderDevice, ResolutionWidth, ResolutionHeight, BitDepth, IsWindowed, TextureBitDepth);
+#else
+	return true;
+#endif
 }
 
 bool DX8Wrapper::Registry_Save_Render_Device( const char *sub_key, int device, int width, int height, int depth, bool windowed, int texture_depth)
 {
+#ifndef _ANDROID
 	RegistryClass * registry = W3DNEW RegistryClass( sub_key );
 	WWASSERT( registry );
 
@@ -1334,10 +1365,14 @@ bool DX8Wrapper::Registry_Save_Render_Device( const char *sub_key, int device, i
 
 	delete registry;
 	return true;
+#else
+	return true;
+#endif
 }
 
 bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, bool resize_window )
 {
+#ifndef _ANDROID
 	char	name[ 200 ];
 	int	width,height,depth,windowed;
 
@@ -1425,10 +1460,14 @@ bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, bool resize_
 	WWDEBUG_SAY(( "Error getting Registry" ));
 
 	return Set_Any_Render_Device();
+#else
+	return Set_Any_Render_Device();
 }
+#endif
 
 bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, char *device, int device_len, int &width, int &height, int &depth, int &windowed, int &texture_depth)
 {
+#ifndef _ANDROID
 	RegistryClass registry( sub_key );
 
 	if ( registry.Is_Valid() ) {
@@ -1440,8 +1479,11 @@ bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, char *device
 		depth =		registry.Get_Int( VALUE_NAME_RENDER_DEVICE_DEPTH, -1 );
 		windowed =	registry.Get_Int( VALUE_NAME_RENDER_DEVICE_WINDOWED, -1 );
 		texture_depth = registry.Get_Int( VALUE_NAME_RENDER_DEVICE_TEXTURE_DEPTH, -1 );
+
 		return true;
 	}
+#endif
+
 	*device=0;
 	width=-1;
 	height=-1;
@@ -2085,7 +2127,7 @@ void DX8Wrapper::Draw(
 
 #ifdef MESH_RENDER_SNAPSHOT_ENABLED
 	if (WW3D::Is_Snapshot_Activated()) {
-		unsigned long passes=0;
+		DWORD passes=0;
 		SNAPSHOT_SAY(("ValidateDevice:"));
 		HRESULT res=D3DDevice->ValidateDevice(&passes);
 		switch (res) {
@@ -2544,8 +2586,8 @@ IDirect3DTexture8 * DX8Wrapper::_Create_DX8_Texture
 	unsigned result = D3DXCreateTextureFromFileExA(
 		_Get_D3D_Device8(),
 		filename,
-		D3DX_DEFAULT,
-		D3DX_DEFAULT,
+		(UINT)D3DX_DEFAULT,
+		(UINT)D3DX_DEFAULT,
 		mip_level_count,//create_mipmaps ? 0 : 1,
 		0,
 		D3DFMT_UNKNOWN,
@@ -3727,6 +3769,7 @@ void DX8Wrapper::Set_Gamma(float gamma,float bright,float contrast,bool calibrat
 	if (Get_Current_Caps()->Support_Gamma())	{
 		DX8Wrapper::_Get_D3D_Device8()->SetGammaRamp(flag,&ramp);
 	} else {
+#ifndef _ANDROID
 		HWND hwnd = GetDesktopWindow();
 		HDC hdc = GetDC(hwnd);
 		if (hdc)
@@ -3734,6 +3777,7 @@ void DX8Wrapper::Set_Gamma(float gamma,float bright,float contrast,bool calibrat
 			SetDeviceGammaRamp (hdc, &ramp);
 			ReleaseDC (hwnd, hdc);
 		}
+#endif
 	}
 }
 

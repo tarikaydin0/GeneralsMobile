@@ -30,6 +30,82 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
 
+#if 0
+
+#include "Lib/BaseType.h"
+#include "Common/FileSystem.h"
+#include "Common/GameEngine.h"
+#include "Common/GameState.h"
+#include "Common/Recorder.h"
+#include "Common/version.h"
+#include "GameClient/WindowLayout.h"
+#include "GameClient/Gadget.h"
+#include "GameClient/GadgetListBox.h"
+#include "GameClient/Shell.h"
+#include "GameClient/KeyDefs.h"
+#include "GameClient/GameWindowManager.h"
+#include "GameClient/MessageBox.h"
+#include "GameClient/MapUtil.h"
+#include "GameClient/Mouse.h"
+#include "GameClient/GameText.h"
+#include "GameClient/GameWindowTransitions.h"
+
+// ... (Rest of the file content would be here, but effectively disabled) ...
+// Since I cannot paste the entire 830 lines again without making this tool call huge, 
+// I will rely on the fact that I am replacing the file content with the original content wrapped in #if 0.
+// Wait, I cannot construct the "ReplacementContent" with the full original text if I don't have it in my memory buffer 
+// or if I don't paste it all back. 
+// Since I have viewed the file, I theoretically know it. 
+// However, the `replace_file_content` tool REPLACES the content. 
+// If I provide a truncated version, I will lose code.
+// The user authorized "deactivating" it.
+// I can just replace the whole file with a stub that does nothing, similar to Recorder.cpp, 
+// but since these are callbacks, simply hiding them might be better.
+// Actually, empty functions are better than #if 0 if they are referenced elsewhere.
+// But these are GUI callbacks, likely referenced by name strings or registered.
+// If I #if 0 them, the linker might complain if they are prototyped elsewhere.
+// Let's assume they are not prototyped elsewhere or used via explicit function pointers in a way that requires definition.
+// ReplayMenuInit, ReplayMenuShutdown, ReplayMenuUpdate, ReplayMenuInput, ReplayMenuSystem ARE likely used.
+// Yes, they are typical GameEngine callback names.
+// So I should probably stub them too, instead of #if 0.
+// Let's check `ReplayMenu.cpp` again. 
+// Yes: void ReplayMenuInit( WindowLayout *layout, void *userData )
+// If I #if 0 this, I'll get linker errors if anyone calls ReplayMenuInit.
+// So, I should stub them.
+
+void ReplayMenuInit( WindowLayout *layout, void *userData ) {}
+void ReplayMenuShutdown( WindowLayout *layout, void *userData ) {}
+void ReplayMenuUpdate( WindowLayout *layout, void *userData ) {}
+WindowMsgHandledType ReplayMenuInput( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 ) { return MSG_IGNORED; }
+WindowMsgHandledType ReplayMenuSystem( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 ) { return MSG_IGNORED; }
+
+#endif // 0
+
+// I will provide the stubs outside the #if 0 block to satisfy linker.
+
+#include "GameClient/WindowLayout.h" // Needed for types
+
+void ReplayMenuInit( WindowLayout *layout, void *userData ) {}
+void ReplayMenuShutdown( WindowLayout *layout, void *userData ) {}
+void ReplayMenuUpdate( WindowLayout *layout, void *userData ) {}
+WindowMsgHandledType ReplayMenuInput( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 ) { return MSG_IGNORED; }
+WindowMsgHandledType ReplayMenuSystem( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 ) { return MSG_IGNORED; }
+
+
+////////////////////////////////////////////////////////////////////////////////
+//																																						//
+//  (c) 2001-2003 Electronic Arts Inc.																				//
+//																																						//
+////////////////////////////////////////////////////////////////////////////////
+
+// FILE: ReplayMenu.cpp /////////////////////////////////////////////////////////////////////
+// Author: Chris The masta Huybregts, December 2001
+// Description: Replay Menus
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
+#include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
+
 
 #include "Lib/BaseType.h"
 #include "Common/FileSystem.h"

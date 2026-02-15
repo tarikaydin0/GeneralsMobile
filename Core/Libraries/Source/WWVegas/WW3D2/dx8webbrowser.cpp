@@ -36,6 +36,10 @@
 
 #if ENABLE_EMBEDDED_BROWSER
 
+#ifdef _ANDROID
+// DX8WebBrowser is not supported on Android (relies on COM/ActiveX/IE)
+#else
+
 #if defined(_MSC_VER) && _MSC_VER < 1300
 
 // Import the Browser Type Library
@@ -260,4 +264,6 @@ void	DX8WebBrowser::Navigate(const char* browsername, const char* url)
 	pBrowser->Navigate(_bstr_t(browsername),_bstr_t(url));
 }
 
-#endif
+#endif // !defined(_ANDROID)
+
+#endif // ENABLE_EMBEDDED_BROWSER

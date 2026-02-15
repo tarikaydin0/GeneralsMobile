@@ -42,6 +42,11 @@
 #include "matinfo.h"
 #include "texture.h"
 #include "wwstring.h"
+#include <cstring>
+#ifdef _ANDROID
+#include <unistd.h>
+#include <strings.h>
+#endif
 
 #include <windows.h>
 
@@ -257,7 +262,11 @@ AggregateDefClass::Find_Subobject
 				if (ptemp_obj == nullptr)
 					continue;
 
+#ifdef _ANDROID
+				if (strcasecmp (ptemp_obj->Get_Name (), mesh_path[index]) == 0) {
+#else
 				if (::lstrcmpi (ptemp_obj->Get_Name (), mesh_path[index]) == 0) {
+#endif
 					sub_obj = ptemp_obj;
 				} else {
 					REF_PTR_RELEASE (ptemp_obj);
@@ -351,19 +360,27 @@ AggregateDefClass::Load_Assets (const char *passet_name)
 
 		// Determine what the current working directory is
 		char path[MAX_PATH];
+#ifdef _ANDROID
+		getcwd(path, sizeof(path));
+#else
 		::GetCurrentDirectory (sizeof (path), path);
+#endif
 
 		// Ensure the path is directory delimited
-		if (path[::lstrlen(path)-1] != '\\') {
-			::lstrcat (path, "\\");
+		if (path[::strlen(path)-1] != '\\' && path[::strlen(path)-1] != '/') {
+			::strcat (path, "\\");
 		}
 
 		// Assume the filename is simply the "asset name" + the w3d extension
-		::lstrcat (path, passet_name);
-		::lstrcat (path, ".w3d");
+		::strcat (path, passet_name);
+		::strcat (path, ".w3d");
 
 		// If the file exists, then load it into the asset manager.
+#ifdef _ANDROID
+		if (access(path, F_OK) != -1) {
+#else
 		if (::GetFileAttributes (path) != 0xFFFFFFFF) {
+#endif
 			retval = WW3DAssetManager::Get_Instance()->Load_3D_Assets (path);
 		}
 	}
@@ -388,7 +405,7 @@ AggregateDefClass::Initialize (RenderObjClass &base_model)
 	orig_model_name = (orig_model_name == nullptr) ? base_model.Get_Name () : orig_model_name;
 
 	// Record information about this base model
-	::lstrcpy (m_Info.BaseModelName, orig_model_name);
+	std::strcpy (m_Info.BaseModelName, orig_model_name);
 	m_Info.SubobjectCount = 0;
 	m_MiscInfo.OriginalClassID = base_model.Class_ID ();
 	m_MiscInfo.Flags = 0;
@@ -468,8 +485,16 @@ AggregateDefClass::Build_Subobject_List
 					 (Is_Object_In_List (prototype_name, orig_node_list) == false)) {
 
 					// Add this subobject to our list
+#ifdef _ANDROID
+					std::strcpy (subobj_info.SubobjectName, prototype_name);
+#else
 					::lstrcpy (subobj_info.SubobjectName, prototype_name);
+#endif
+#ifdef _ANDROID
+					std::strcpy (subobj_info.BoneName, pbone_name);
+#else
 					::lstrcpy (subobj_info.BoneName, pbone_name);
+#endif
 					Add_Subobject (subobj_info);
 					m_Info.SubobjectCount ++;
 
@@ -520,7 +545,11 @@ AggregateDefClass::Is_Object_In_List
 
 		// Is this the render object we were looking for?
 		if (prender_obj != nullptr &&
+#ifdef _ANDROID
+		    strcasecmp (prender_obj->Get_Name (), passet_name) == 0) {
+#else
 		    ::lstrcmpi (prender_obj->Get_Name (), passet_name) == 0) {
+#endif
 			retval = true;
 		}
 	}
@@ -673,8 +702,13 @@ AggregateDefClass::Add_Subobject (const W3dAggregateSubobjectStruct &subobj_info
 {
 	// Create a new structure and copy the contents of the src
 	W3dAggregateSubobjectStruct *pnew_entry = W3DNEW W3dAggregateSubobjectStruct;
+#ifdef _ANDROID
+	std::strcpy (pnew_entry->SubobjectName, subobj_info.SubobjectName);
+	std::strcpy (pnew_entry->BoneName, subobj_info.BoneName);
+#else
 	::lstrcpy (pnew_entry->SubobjectName, subobj_info.SubobjectName);
 	::lstrcpy (pnew_entry->BoneName, subobj_info.BoneName);
+#endif
 
 	// Add this new entry to the list
 	m_SubobjectList.Add (pnew_entry);

@@ -28,10 +28,15 @@
 
 #pragma once
 
-#include "gamespy/peer/peer.h"
-
 #include "GameClient/Color.h"
 #include "Common/STLTypedefs.h"
+
+// Define NO_GAMESPY to disable GameSpy SDK dependency
+#define NO_GAMESPY
+
+#ifndef NO_GAMESPY
+#include "gamespy/peer/peer.h"
+#endif
 
 class GameSpyGroupRoom
 {
@@ -46,6 +51,7 @@ public:
 };
 typedef std::map<Int, GameSpyGroupRoom> GroupRoomMap;
 
+#ifndef NO_GAMESPY
 class GameSpyChatInterface : public SubsystemInterface
 {
 public:
@@ -99,12 +105,27 @@ protected:
 	GroupRoomMap m_groupRooms;
 	Int m_currentGroupRoomID;
 };
+#else
+// Stubs for GameSpyChatInterface when GameSpy is disabled
+typedef void* PEER; // Dummy typedef
+class GameSpyChatInterface : public SubsystemInterface
+{
+public:
+    virtual ~GameSpyChatInterface() { };
+    virtual void init( void ) {}
+    virtual void reset( void ) {}
+    virtual void update( void ) {}
+    virtual Bool isConnected( void ) { return FALSE; }
+    // Add other necessary stubs if referenced, or rely on them not being called/linked
+};
+#endif
 
 GameSpyChatInterface *createGameSpyChat( void );
 
 extern GameSpyChatInterface *TheGameSpyChat;
 
 
+#ifndef NO_GAMESPY
 void JoinRoomCallback(PEER peer, PEERBool success,
 											PEERJoinResult result, RoomType roomType,
 											void *param);																	///< Called when we (fail to) join a room.  param is address of Bool to store result
@@ -114,6 +135,7 @@ void ListGroupRoomsCallback(PEER peer, PEERBool success,
 														const char * name, int numWaiting,
 														int maxWaiting, int numGames,
 														int numPlaying, void * param);					///< Called while listing group rooms
+#endif
 
 enum GameSpyColors CPP_11(: Int) {
 	GSCOLOR_DEFAULT = 0,

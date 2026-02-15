@@ -20,11 +20,19 @@
 
 #include "always.h"
 
+#ifdef _WIN32
 #include <win.h>
 #include <imagehlp.h> // Must be included after Windows.h
+#else
+#include "win.h"
+#endif
+
 #include <set>
+
+#ifdef _WIN32
 #ifdef RTS_ENABLE_CRASHDUMP
 #include <DbgHelpLoader_minidump.h>
+#endif
 #endif
 
 #include "mutex.h"
@@ -58,6 +66,7 @@ public:
 	static bool load();
 	static void unload();
 
+#ifdef _WIN32
 	static BOOL WINAPI symInitialize(
 		HANDLE hProcess,
 		LPSTR UserSearchPath,
@@ -122,11 +131,13 @@ public:
 		PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,
 		PMINIDUMP_CALLBACK_INFORMATION CallbackParam);
 #endif
+#endif
 
 private:
 
 	static void freeResources();
 
+#ifdef _WIN32
 	typedef BOOL (WINAPI *SymInitialize_t) (
 		HANDLE hProcess,
 		LPSTR UserSearchPath,
@@ -191,7 +202,9 @@ private:
 		PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,
 		PMINIDUMP_CALLBACK_INFORMATION CallbackParam);
 #endif
+#endif
 
+#ifdef _WIN32
 	SymInitialize_t m_symInitialize;
 	SymCleanup_t m_symCleanup;
 	SymLoadModule_t m_symLoadModule;
@@ -210,6 +223,7 @@ private:
 
 	Processes m_initializedProcesses;
 	HMODULE m_dllModule;
+#endif
 	int m_referenceCount;
 	bool m_failed;
 	bool m_loadedFromSystem;

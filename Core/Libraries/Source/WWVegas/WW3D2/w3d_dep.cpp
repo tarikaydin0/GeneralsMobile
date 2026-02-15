@@ -50,6 +50,14 @@
 
 //-----------------------------------------------------------------------------
 // srj sez: hack festival :-(
+
+#include "w3d_dep.h"
+#include "w3d_file.h"
+#include <assert.h>
+#include <stddef.h>
+#include <chunkio.h>
+#include "ffactory.h"
+
 class STLSpecialAlloc
 {
 public:
@@ -57,13 +65,6 @@ public:
   static void*  allocate(size_t __n) {  return ::operator new(__n); }
   static void deallocate(void* __p, size_t) { ::operator delete(__p); }
 };
-
-
-#include "w3d_dep.h"
-#include "w3d_file.h"
-#include <assert.h>
-#include <chunkio.h>
-#include "ffactory.h"
 
 
 /*

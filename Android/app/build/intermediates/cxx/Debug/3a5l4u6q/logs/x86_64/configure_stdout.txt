@@ -1,0 +1,56 @@
+-- CMAKE_CXX_COMPILER: C:/Users/devacc/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe
+-- CMAKE_CXX_COMPILER_ID: Clang
+-- CMAKE_CXX_COMPILER_VERSION: 17.0.2
+-- CMAKE_INSTALL_PREFIX: C:/Program Files (x86)/genzh
+-- Configuring for Android (x86_64)
+-- Populating lzhl
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/x86_64/lzhl-subbuild
+[0/7] Performing update step for 'lzhl-populate'
+-- Already at requested ref: dfd96e2ca64adaddb35dd4ebadd6add7d5586783
+[1/7] No patch step for 'lzhl-populate'
+[3/7] No configure step for 'lzhl-populate'
+[4/7] No build step for 'lzhl-populate'
+[5/7] No install step for 'lzhl-populate'
+[6/7] No test step for 'lzhl-populate'
+[7/7] Completed 'lzhl-populate'
+-- Zero Hour install path not found. Registry keys for 'Command and Conquer Generals Zero Hour' not found. Zero Hour targets will be built, but not installed. You can specify the path manually by setting RTS_INSTALL_PREFIX_ZEROHOUR.
+-- Generals install path not found. Registry keys for 'Generals' not found. Generals targets will be built, but not installed. You can specify the path manually by setting RTS_INSTALL_PREFIX_GENERALS.
+-- Enabled features:
+ * CoreTools, Build Core Mod Tools
+ * ZeroHourStuff, Build Zero Hour code
+ * GeneralsStuff, Build Generals code
+ * ZeroHourTools, Build Zero Hour Mod Tools
+ * GeneralsTools, Build Generals Mod Tools
+ * GameMemoryEnable, Build with the original game memory implementation
+ * MemoryPoolMpsbDlink, Build with Memory Pool backlink
+ * MemoryPoolDebug, Build with Memory Pool debug
+ * MemoryPoolDebugCustomNew, Build with Memory Pool custom new
+ * MemoryPoolDebugBoundingwall, Build with Memory Pool Bounding Wall
+ * CrashDumpEnable, Build with Crash Dumps
+
+-- Disabled features:
+ * CoreExtras, Build Core Extra Tools/Tests
+ * ProfileBuild, Building as a "Profile" build
+ * DebugBuild, Building as a "Debug" build
+ * AddressSanitizer, Building with address sanitizer
+ * Vc6FullDebug, Building VC6 with full debug info
+ * FFmpegSupport, Building with FFmpeg support
+ * ZeroHourExtras, Build Zero Hour Extra Tools/Tests
+ * ZeroHourDocs, Build Zero Hour Documentation
+ * GeneralsExtras, Build Generals Extra Tools/Tests
+ * GeneralsDocs, Build Generals Documentation
+ * DebugCheats, Build with Debug Cheats in release builds
+ * DebugIncludeDebugLogInCrcLog, Build with Debug Logging in CRC log
+ * DebugMultiInstance, Build with Multi Client Instance support
+ * MemoryPoolOverrideMalloc, Build with Memory Pool malloc
+ * MemoryPoolDebugCheckpointing, Build with Memory Pool checkpointing
+ * MemoryPoolDebugStacktrace, Build with Memory Pool Stacktrace
+ * MemoryPoolDebugIntenseVerify, Build with Memory Pool intense verify
+ * MemoryPoolDebugCheckBlockOwnership, Build with Memory Pool block ownership checks
+ * MemoryPoolDebugIntenseDmaBookkeeping, Build with Memory Pool intense DMA bookkeeping
+
+-- Configuring done (2.2s)
+-- Generating done (3.0s)
+-- Build files have been written to: C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/x86_64

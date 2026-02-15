@@ -21,16 +21,25 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "framgrab.h"
+#include "framgrab.h"
+
+#ifdef _ANDROID
+// Android implementation is inline in framgrab.h
+#else
 #include <io.h>
+#endif
 //#include <errno.h>
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
+#ifndef _ANDROID
 FrameGrabClass::FrameGrabClass(const char *filename, MODE mode, int width, int height, int bitcount, float framerate)
 {
 	HRESULT          hr;
+    // ... (rest of the file)
+
 
 	Mode = mode;
 	Filename = filename;
@@ -188,3 +197,4 @@ void FrameGrabClass::ConvertFrame(void *BitmapPointer)
 		}
 	}
 }
+#endif

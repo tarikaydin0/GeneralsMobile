@@ -1,0 +1,210 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 26 min SDK version: arm64-v8a",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\.cxx\\Debug\\3j6i601a\\arm64-v8a\\android_gradle_build.json due to:",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "- no fingerprint file, will remove stale configuration folder",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "@echo off\n\"D:\\\\Android\\\\Android Studio\\\\jbr\\\\bin\\\\java\" ^\n  --class-path ^\n  \"C:\\\\Users\\\\devacc\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.google.prefab\\\\cli\\\\2.1.0\\\\aa32fec809c44fa531f01dcfb739b5b3304d3050\\\\cli-2.1.0-all.jar\" ^\n  com.google.prefab.cli.AppKt ^\n  --build-system ^\n  cmake ^\n  --platform ^\n  android ^\n  --abi ^\n  arm64-v8a ^\n  --os-version ^\n  26 ^\n  --stl ^\n  c++_static ^\n  --ndk-version ^\n  26 ^\n  --output ^\n  \"C:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Temp\\\\agp-prefab-staging6587239277523509539\\\\staged-cli-output\" ^\n  \"C:\\\\Users\\\\devacc\\\\.gradle\\\\caches\\\\transforms-4\\\\e32ed7c37b1556c25d8771d5019236d4\\\\transformed\\\\games-activity-3.0.0\\\\prefab\" ^\n  \"C:\\\\Users\\\\devacc\\\\.gradle\\\\caches\\\\transforms-4\\\\b0b5ae9ae8e2085b572ad9fe03ca41a5\\\\transformed\\\\oboe-1.9.3\\\\prefab\"\n",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "Received process result: 0",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 1,
+    "message_": "com.google.prefab.api.NoMatchingLibraryException: No compatible library found for //oboe/oboe. Rejected the following libraries:",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 3,
+    "message_": "User is using a static STL but library requires a shared STL [//oboe/oboe]",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 1212,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 1,
+    "message_": "android.armeabi-v7a: User is targeting arm64-v8a but library is for armeabi-v7a",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 1,
+    "message_": "android.x86: User is targeting arm64-v8a but library is for x86",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 1,
+    "message_": "android.x86_64: User is targeting arm64-v8a but library is for x86_64",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\.cxx\\Debug\\3j6i601a\\arm64-v8a\u0027",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\\.cxx\\Debug\\3j6i601a\\arm64-v8a\u0027",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake @echo off\n\"C:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\cmake.exe\" ^\n  \"-HC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\" ^\n  \"-DCMAKE_SYSTEM_NAME\u003dAndroid\" ^\n  \"-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\" ^\n  \"-DCMAKE_SYSTEM_VERSION\u003d26\" ^\n  \"-DANDROID_PLATFORM\u003dandroid-26\" ^\n  \"-DANDROID_ABI\u003darm64-v8a\" ^\n  \"-DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a\" ^\n  \"-DANDROID_NDK\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\" ^\n  \"-DCMAKE_ANDROID_NDK\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\" ^\n  \"-DCMAKE_TOOLCHAIN_FILE\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\\\\build\\\\cmake\\\\android.toolchain.cmake\" ^\n  \"-DCMAKE_MAKE_PROGRAM\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\ninja.exe\" ^\n  \"-DCMAKE_CXX_FLAGS\u003d-std\u003dc++20\" ^\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3j6i601a\\\\obj\\\\arm64-v8a\" ^\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3j6i601a\\\\obj\\\\arm64-v8a\" ^\n  \"-DCMAKE_BUILD_TYPE\u003dDebug\" ^\n  \"-DCMAKE_FIND_ROOT_PATH\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\.cxx\\\\Debug\\\\3j6i601a\\\\prefab\\\\arm64-v8a\\\\prefab\" ^\n  \"-BC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\.cxx\\\\Debug\\\\3j6i601a\\\\arm64-v8a\" ^\n  -GNinja ^\n  \"-DANDROID_STL\u003dc++_static\"\n",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "@echo off\n\"C:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\cmake.exe\" ^\n  \"-HC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\" ^\n  \"-DCMAKE_SYSTEM_NAME\u003dAndroid\" ^\n  \"-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\" ^\n  \"-DCMAKE_SYSTEM_VERSION\u003d26\" ^\n  \"-DANDROID_PLATFORM\u003dandroid-26\" ^\n  \"-DANDROID_ABI\u003darm64-v8a\" ^\n  \"-DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a\" ^\n  \"-DANDROID_NDK\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\" ^\n  \"-DCMAKE_ANDROID_NDK\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\" ^\n  \"-DCMAKE_TOOLCHAIN_FILE\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\\\\build\\\\cmake\\\\android.toolchain.cmake\" ^\n  \"-DCMAKE_MAKE_PROGRAM\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\ninja.exe\" ^\n  \"-DCMAKE_CXX_FLAGS\u003d-std\u003dc++20\" ^\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3j6i601a\\\\obj\\\\arm64-v8a\" ^\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3j6i601a\\\\obj\\\\arm64-v8a\" ^\n  \"-DCMAKE_BUILD_TYPE\u003dDebug\" ^\n  \"-DCMAKE_FIND_ROOT_PATH\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\.cxx\\\\Debug\\\\3j6i601a\\\\prefab\\\\arm64-v8a\\\\prefab\" ^\n  \"-BC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\.cxx\\\\Debug\\\\3j6i601a\\\\arm64-v8a\" ^\n  -GNinja ^\n  \"-DANDROID_STL\u003dc++_static\"\n",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "Received process result: 1",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed with problem. Exception: com.android.ide.common.process.ProcessException: -- Configuring incomplete, errors occurred!\n\nC++ build system [configure] failed while executing:\n    @echo off\n    \"C:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\cmake.exe\" ^\n      \"-HC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\" ^\n      \"-DCMAKE_SYSTEM_NAME\u003dAndroid\" ^\n      \"-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\" ^\n      \"-DCMAKE_SYSTEM_VERSION\u003d26\" ^\n      \"-DANDROID_PLATFORM\u003dandroid-26\" ^\n      \"-DANDROID_ABI\u003darm64-v8a\" ^\n      \"-DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a\" ^\n      \"-DANDROID_NDK\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\" ^\n      \"-DCMAKE_ANDROID_NDK\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\" ^\n      \"-DCMAKE_TOOLCHAIN_FILE\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\26.1.10909125\\\\build\\\\cmake\\\\android.toolchain.cmake\" ^\n      \"-DCMAKE_MAKE_PROGRAM\u003dC:\\\\Users\\\\devacc\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\ninja.exe\" ^\n      \"-DCMAKE_CXX_FLAGS\u003d-std\u003dc++20\" ^\n      \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3j6i601a\\\\obj\\\\arm64-v8a\" ^\n      \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3j6i601a\\\\obj\\\\arm64-v8a\" ^\n      \"-DCMAKE_BUILD_TYPE\u003dDebug\" ^\n      \"-DCMAKE_FIND_ROOT_PATH\u003dC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\.cxx\\\\Debug\\\\3j6i601a\\\\prefab\\\\arm64-v8a\\\\prefab\" ^\n      \"-BC:\\\\Users\\\\devacc\\\\Desktop\\\\repo\\\\generals\\\\Android\\\\app\\\\.cxx\\\\Debug\\\\3j6i601a\\\\arm64-v8a\" ^\n      -GNinja ^\n      \"-DANDROID_STL\u003dc++_static\"\n  from C:\\Users\\devacc\\Desktop\\repo\\generals\\Android\\app\nCMake Error at CMakeLists.txt:1 (cmake_minimum_required):\n  CMake 3.25 or higher is required.  You are running version\n  3.22.1-g37088a8-dirty",
+    "file_": "C:\\Users\\devacc\\Desktop\\repo\\generals\\CMakeLists.txt",
+    "tag_": "debug|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  }
+]

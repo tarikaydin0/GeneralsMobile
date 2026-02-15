@@ -24,16 +24,29 @@
 
 
 #include <sys/types.h>
+#ifdef WIN32
 #include <sys/timeb.h>
+#else
+#include <sys/time.h>
+#include <unistd.h>
+#endif
 #include <stdlib.h>
+#ifdef WIN32
 #include <process.h>
+#endif
 #include <sys/stat.h>
+#ifdef WIN32
 #include <io.h>
+#else
+#include <unistd.h>
+#endif
 #include <time.h>
 #include "assert.h"
 #include "ftp.h"
 #include <time.h>
+#ifdef WIN32
 #include <direct.h>
+#endif
 #include <errno.h>
 #include <WWCommon.h>
 //#include "wlib/wstring.h"
@@ -118,6 +131,7 @@ bool Prepare_Directories(const char *rootdir, const char *filename);
 //
 static bool Use_Non_Blocking_Mode(void)
 {
+#ifdef WIN32
 	HKEY regKey;
 	LONG regRetval;
 	DWORD bufsiz=0;
@@ -141,6 +155,9 @@ static bool Use_Non_Blocking_Mode(void)
 		return(TRUE);
 
 	return bool(value);
+#else
+	return true;
+#endif
 }
 
 

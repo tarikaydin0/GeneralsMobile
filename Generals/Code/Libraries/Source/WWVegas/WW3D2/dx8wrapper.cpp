@@ -313,12 +313,19 @@ bool DX8Wrapper::Init(void * hwnd, bool lite)
 	Invalidate_Cached_Render_States();
 
 	if (!lite) {
+#ifdef _WIN32
 		D3D8Lib = LoadLibrary("D3D8.DLL");
 
 		if (D3D8Lib == nullptr) return false;	// Return false at this point if init failed
 
 		Direct3DCreate8Ptr = (Direct3DCreate8Type) GetProcAddress(D3D8Lib, "Direct3DCreate8");
 		if (Direct3DCreate8Ptr == nullptr) return false;
+#else
+		// On non-Windows/Android, we expect to be linked against a library that provides Direct3DCreate8
+		// or a wrapper. We assign the function pointer directly.
+		Direct3DCreate8Ptr = &Direct3DCreate8;
+		D3D8Lib = (HINSTANCE)1; // Fake handle to indicate success
+#endif
 
 		/*
 		** Create the D3D interface object
@@ -380,7 +387,9 @@ void DX8Wrapper::Shutdown(void)
 	}
 
 	if (D3D8Lib) {
+#ifdef _WIN32
 		FreeLibrary(D3D8Lib);
+#endif
 		D3D8Lib = nullptr;
 	}
 
@@ -439,7 +448,7 @@ void DX8Wrapper::Set_Default_Global_Render_States(void)
 
 //MW: I added this for 'Generals'.
 bool DX8Wrapper::Validate_Device(void)
-{	DWORD numPasses=0;
+{	uint32_t numPasses=0;
 	HRESULT hRes;
 
 	hRes=_Get_D3D_Device8()->ValidateDevice(&numPasses);
@@ -707,11 +716,19 @@ void DX8Wrapper::Enumerate_Devices()
 			desc.set_driver_name(id.Driver);
 
 			char buf[64];
+#ifdef _WIN32
 			sprintf(buf,"%d.%d.%d.%d", //"%04x.%04x.%04x.%04x",
 				HIWORD(id.DriverVersion.HighPart),
 				LOWORD(id.DriverVersion.HighPart),
 				HIWORD(id.DriverVersion.LowPart),
 				LOWORD(id.DriverVersion.LowPart));
+#else
+			sprintf(buf,"%d.%d.%d.%d", //"%04x.%04x.%04x.%04x",
+				HIWORD(id.DriverVersionHighPart),
+				LOWORD(id.DriverVersionHighPart),
+				HIWORD(id.DriverVersionLowPart),
+				LOWORD(id.DriverVersionLowPart));
+#endif
 
 			desc.set_driver_version(buf);
 
@@ -843,6 +860,7 @@ void DX8Wrapper::Get_Format_Name(unsigned int format, StringClass *tex_format)
 
 void DX8Wrapper::Resize_And_Position_Window()
 {
+#ifdef _WIN32
 	// Get the current dimensions of the 'render area' of the window
 	RECT rect = { 0 };
 	::GetClientRect (_Hwnd, &rect);
@@ -893,6 +911,7 @@ void DX8Wrapper::Resize_And_Position_Window()
 			DEBUG_LOG(("Window positioned to x:%d y:%d, resized to w:%d h:%d", left, top, width, height));
 		}
 	}
+#endif
 }
 
 bool DX8Wrapper::Set_Render_Device(int dev, int width, int height, int bits, int windowed,
@@ -1922,7 +1941,7 @@ void DX8Wrapper::Draw(
 	if (WW3D::Is_Snapshot_Activated()) {
 		unsigned long passes=0;
 		SNAPSHOT_SAY(("ValidateDevice:"));
-		HRESULT res=D3DDevice->ValidateDevice(&passes);
+		HRESULT res=D3DDevice->ValidateDevice((DWORD*)&passes);
 		switch (res) {
 		case D3D_OK:
 			SNAPSHOT_SAY(("OK"));
@@ -3484,6 +3503,7 @@ void DX8Wrapper::Set_Gamma(float gamma,float bright,float contrast,bool calibrat
 	if (Get_Current_Caps()->Support_Gamma())	{
 		DX8Wrapper::_Get_D3D_Device8()->SetGammaRamp(flag,&ramp);
 	} else {
+#ifdef _WIN32
 		HWND hwnd = GetDesktopWindow();
 		HDC hdc = GetDC(hwnd);
 		if (hdc)
@@ -3491,6 +3511,7 @@ void DX8Wrapper::Set_Gamma(float gamma,float bright,float contrast,bool calibrat
 			SetDeviceGammaRamp (hdc, &ramp);
 			ReleaseDC (hwnd, hdc);
 		}
+#endif
 	}
 }
 

@@ -38,7 +38,33 @@
 
 #include "always.h"
 #pragma warning (push, 3)
+#ifndef _ANDROID
 #include "mss.h"
+#else
+// MSS Stubs for Android
+#ifndef MSS_STUBS_DEFINED
+#define MSS_STUBS_DEFINED
+#ifndef __stdcall
+#define __stdcall
+#endif
+typedef void* HPROVIDER;
+typedef void* HDIGDRIVER;
+typedef void* HSAMPLE;
+typedef void* H3DSAMPLE;
+typedef void* H3DPOBJECT;
+typedef void* LPWAVEFORMAT;
+typedef void* HTIMER;
+typedef unsigned int U32;
+typedef signed int S32;
+#define AILCALLBACK
+// Removed conflicting callbacks (LPFNEOSCALLBACK, LPFNTEXTCALLBACK) to use AudioEvents.h versions
+#endif 
+// WWAudio.h line 286: void Register_Text_Callback (LPFNTEXTCALLBACK callback, DWORD user_param);
+// If it's a typedef from MSS, I should try to match it or make it compatible.
+// Let's check if I can see usage.
+// But for now, a decent guess or void* might work if it's just passing it around.
+// However, `LPFNTEXTCALLBACK` is used as a type.
+#endif
 #pragma warning (pop)
 
 #include "Vector.h"

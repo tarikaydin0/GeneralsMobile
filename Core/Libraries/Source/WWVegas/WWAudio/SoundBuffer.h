@@ -37,7 +37,30 @@
 #pragma once
 
 #pragma warning (push, 3)
+#ifndef _ANDROID
 #include "mss.h"
+#else
+// MSS Stubs for Android
+// These should match WWAudio.h stubs or be sufficient for compilation
+#ifndef MSS_STUBS_DEFINED
+#define MSS_STUBS_DEFINED
+#ifndef __stdcall
+#define __stdcall
+#endif
+typedef void* HPROVIDER;
+typedef void* HDIGDRIVER;
+typedef void* HSAMPLE;
+typedef void* H3DSAMPLE;
+typedef void* H3DPOBJECT;
+typedef void* LPWAVEFORMAT;
+typedef void* HTIMER;
+typedef unsigned int U32;
+typedef signed int S32;
+#define AILCALLBACK
+// Removed conflicting callbacks (LPFNEOSCALLBACK, LPFNTEXTCALLBACK)
+// They are defined in AudioEvents.h
+#endif
+#endif
 #pragma warning (pop)
 
 #include "always.h"

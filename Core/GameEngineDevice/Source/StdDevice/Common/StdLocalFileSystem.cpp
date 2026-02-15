@@ -34,6 +34,13 @@
 
 #include <filesystem>
 
+#if !defined(_WIN32) && (defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)) || defined(__ANDROID__))
+#include <strings.h>
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
+#endif
+
+
 StdLocalFileSystem::StdLocalFileSystem() : LocalFileSystem()
 {
 }
@@ -240,8 +247,10 @@ void StdLocalFileSystem::getFileListInDirectory(const AsciiString& currentDirect
 
 	while (!done)	{
 		std::string filenameStr = iter->path().filename().string();
-		if (!iter->is_directory() && iter->path().extension() == searchExt &&
+		Bool extMatch = (searchExt.empty()) ? TRUE : (stricmp(iter->path().extension().string().c_str(), searchExt.string().c_str()) == 0);
+		if (!iter->is_directory() && extMatch &&
 			(strcmp(filenameStr.c_str(), ".") != 0 && strcmp(filenameStr.c_str(), "..") != 0)) {
+
 			// if we haven't already, add this filename to the list.
 			// a stl set should only allow one copy of each filename
 			AsciiString newFilename = iter->path().string().c_str();

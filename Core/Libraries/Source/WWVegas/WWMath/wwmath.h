@@ -183,12 +183,12 @@ WWINLINE float WWMath::Sign(float val)
 
 WWINLINE bool WWMath::Fast_Is_Float_Positive(const float & val)
 {
-	return !((*(int *)(&val)) & 0x80000000);
+	return !((*(const int *)(&val)) & 0x80000000);
 }
 
 WWINLINE bool WWMath::Is_Power_Of_2(const unsigned int val)
 {
-	return !((val)&val-1);
+	return (val > 0) && !((val) & (val - 1));
 }
 
 WWINLINE float WWMath::Random_Float(float min,float max)
@@ -584,7 +584,7 @@ WWINLINE int WWMath::Float_To_Int_Floor (const float& f)
 	int mantissa	= (a&((1<<23)-1));								// extract mantissa (without the hidden bit)
 	int r			= ((unsigned int)(mantissa|(1<<23))<<8)>>(31-exponent);	// ((1<<exponent)*(mantissa|hidden bit))>>24 -- (we know that mantissa > (1<<24))
 
-	r = ((r & expsign) ^ (sign)) + ((!((mantissa<<8)&imask)&(expsign^((a-1)>>31)))&sign);	// if (fabs(value)<1.0) value = 0; copy sign; if (value < 0 && value==(int)(value)) value++;
+	r = ((r & expsign) ^ (sign)) + (((!((mantissa<<8)&imask))&(expsign^((a-1)>>31)))&sign);	// if (fabs(value)<1.0) value = 0; copy sign; if (value < 0 && value==(int)(value)) value++;
 	return r;
 }
 

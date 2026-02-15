@@ -142,7 +142,7 @@ private:
 	static void		operator delete[] (void * memory);
 
 	// This must be staticly declared by user
-	static ObjectPoolClass<T,BLOCK_SIZE>	Allocator;
+	inline static ObjectPoolClass<T,BLOCK_SIZE>	Allocator;
 
 };
 

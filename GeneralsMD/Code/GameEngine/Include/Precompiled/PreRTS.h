@@ -40,8 +40,9 @@ class STLSpecialAlloc;
 // PLEASE DO NOT ABUSE WINDOWS OR IT WILL BE REMOVED ENTIRELY. :-)
 //--------------------------------------------------------------------------------- System Includes
 #define WIN32_LEAN_AND_MEAN
+#ifdef _WIN32
 // TheSuperHackers @build JohnsterID 05/01/2026 Add ATL compatibility for MinGW-w64 builds
-#if defined(__GNUC__) && defined(_WIN32)
+#if defined(__GNUC__)
     #include <Utility/atl_compat.h>
 #endif
 #include <atlbase.h>
@@ -88,6 +89,25 @@ class STLSpecialAlloc;
 #endif
 
 #include <dinput.h>
+#else
+// Android/Non-Windows includes
+#include <assert.h>
+#include <ctype.h>
+#include <float.h>
+#include <limits.h>
+#include <math.h>
+#include <memory.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <time.h>
+#include <unistd.h>
+#include "Utility/fstream_adapter.h"
+
+// Stubs for Windows types if needed, though BaseType.h should handle most.
+#endif
 
 //------------------------------------------------------------------------------------ STL Includes
 // srj sez: no, include STLTypesdefs below, instead, thanks

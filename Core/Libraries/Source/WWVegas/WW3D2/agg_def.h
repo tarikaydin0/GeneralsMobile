@@ -40,6 +40,7 @@
 #include "w3derr.h"
 #include "Vector.h"
 #include "bittype.h"
+#include "win.h"
 
 #ifdef _UNIX
 #include "osdep.h"

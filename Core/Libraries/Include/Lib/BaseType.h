@@ -33,6 +33,12 @@
 #include "Lib/trig.h"
 
 //-----------------------------------------------------------------------------
+#ifndef _WIN32
+#include <strings.h>
+#define _stricmp strcasecmp
+#define _strnicmp strncasecmp
+#endif
+
 typedef wchar_t WideChar;  ///< multi-byte character representations
 
 //-----------------------------------------------------------------------------

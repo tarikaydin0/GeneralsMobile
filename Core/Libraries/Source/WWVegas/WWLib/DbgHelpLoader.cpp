@@ -23,6 +23,7 @@ DbgHelpLoader* DbgHelpLoader::Inst = nullptr;
 CriticalSectionClass DbgHelpLoader::CriticalSection;
 
 DbgHelpLoader::DbgHelpLoader()
+#ifdef _WIN32
 	: m_symInitialize(nullptr)
 	, m_symCleanup(nullptr)
 	, m_symLoadModule(nullptr)
@@ -37,6 +38,9 @@ DbgHelpLoader::DbgHelpLoader()
 	, m_miniDumpWriteDump(nullptr)
 #endif
 	, m_dllModule(HMODULE(nullptr))
+#else
+	:
+#endif
 	, m_referenceCount(0)
 	, m_failed(false)
 	, m_loadedFromSystem(false)
@@ -51,7 +55,11 @@ bool DbgHelpLoader::isLoaded()
 {
 	CriticalSectionClass::LockClass lock(CriticalSection);
 
+#ifdef _WIN32
 	return Inst != nullptr && Inst->m_dllModule != HMODULE(nullptr);
+#else
+	return false;
+#endif
 }
 
 bool DbgHelpLoader::isLoadedFromSystem()
@@ -75,7 +83,11 @@ bool DbgHelpLoader::load()
 	if (Inst == nullptr)
 	{
 		// Cannot use new/delete here when this is loaded during game memory initialization.
+#ifdef _WIN32
 		void* p = GlobalAlloc(GMEM_FIXED, sizeof(DbgHelpLoader));
+#else
+		void* p = malloc(sizeof(DbgHelpLoader));
+#endif
 		Inst = new (p) DbgHelpLoader();
 	}
 
@@ -90,6 +102,7 @@ bool DbgHelpLoader::load()
 	if (Inst->m_referenceCount > 1)
 		return true;
 
+#ifdef _WIN32
 	// Try load dbghelp.dll from the system directory first.
 	char dllFilename[MAX_PATH];
 	::GetSystemDirectoryA(dllFilename, ARRAY_SIZE(dllFilename));
@@ -133,6 +146,10 @@ bool DbgHelpLoader::load()
 	}
 
 	return true;
+#else
+	Inst->m_failed = true;
+	return false;
+#endif
 }
 
 void DbgHelpLoader::unload()
@@ -148,14 +165,18 @@ void DbgHelpLoader::unload()
 	freeResources();
 
 	Inst->~DbgHelpLoader();
+#ifdef _WIN32
 	GlobalFree(Inst);
+#else
+	free(Inst);
+#endif
 	Inst = nullptr;
 }
 
 void DbgHelpLoader::freeResources()
 {
 	// Is private. Needs no locking.
-
+#ifdef _WIN32
 	while (!Inst->m_initializedProcesses.empty())
 	{
 		symCleanup(*Inst->m_initializedProcesses.begin());
@@ -180,10 +201,11 @@ void DbgHelpLoader::freeResources()
 #ifdef RTS_ENABLE_CRASHDUMP
 	Inst->m_miniDumpWriteDump = nullptr;
 #endif
-
+#endif
 	Inst->m_loadedFromSystem = false;
 }
 
+#ifdef _WIN32
 BOOL DbgHelpLoader::symInitialize(
 	HANDLE hProcess,
 	LPSTR UserSearchPath,
@@ -359,4 +381,5 @@ BOOL DbgHelpLoader::miniDumpWriteDump(
 
 	return FALSE;
 }
+#endif
 #endif

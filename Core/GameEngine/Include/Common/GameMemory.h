@@ -61,7 +61,11 @@
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
 
+#ifdef _WIN32
 #include <new.h>
+#else
+#include <new>
+#endif
 #include <Utility/stdio_adapter.h>
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC
 	#include <malloc.h>
@@ -652,7 +656,7 @@ protected: \
 		instead -- it'd be nice if we could catch this at compile time, but catching it at \
 		runtime seems to be the best we can do... \
 	*/ \
-	inline void *operator new(size_t s) \
+	inline void *operator new(size_t s) noexcept \
 	{ \
 		DEBUG_CRASH(("This operator new should normally never be called... please use new(char*) instead.")); \
 		DEBUG_ASSERTCRASH(s == sizeof(ARGCLASS), ("The wrong operator new is being called; ensure all objects in the hierarchy have MemoryPoolGlue set up correctly")); \
@@ -694,7 +698,7 @@ protected: \
 public: \
 	enum ARGCLASS##MagicEnum { ARGCLASS##_GLUE_NOT_IMPLEMENTED = 0 }; \
 protected: \
-	inline void *operator new(size_t s, ARGCLASS##MagicEnum e DECLARE_LITERALSTRING_ARG2) \
+	inline void *operator new(size_t s, ARGCLASS##MagicEnum e DECLARE_LITERALSTRING_ARG2) noexcept \
 	{ \
 		DEBUG_CRASH(("this should be impossible to call (abstract base class)")); \
 		DEBUG_ASSERTCRASH(s == sizeof(ARGCLASS), ("The wrong operator new is being called; ensure all objects in the hierarchy have MemoryPoolGlue set up correctly")); \
@@ -702,19 +706,19 @@ protected: \
 		return 0; \
 	} \
 protected: \
-	inline void operator delete(void *p, ARGCLASS##MagicEnum e DECLARE_LITERALSTRING_ARG2) \
+	inline void operator delete(void *p, ARGCLASS##MagicEnum e DECLARE_LITERALSTRING_ARG2) noexcept \
 	{ \
 		DEBUG_CRASH(("this should be impossible to call (abstract base class)")); \
 	} \
 protected: \
-	inline void *operator new(size_t s) \
+	inline void *operator new(size_t s) noexcept \
 	{ \
 		DEBUG_CRASH(("this should be impossible to call (abstract base class)")); \
 		DEBUG_ASSERTCRASH(s == sizeof(ARGCLASS), ("The wrong operator new is being called; ensure all objects in the hierarchy have MemoryPoolGlue set up correctly")); \
 		throw ERROR_BUG; \
 		return 0; \
 	} \
-	inline void operator delete(void *p) \
+	inline void operator delete(void *p) noexcept \
 	{ \
 		DEBUG_CRASH(("this should be impossible to call (abstract base class)")); \
 	} \
@@ -743,8 +747,8 @@ protected:
 	virtual ~MemoryPoolObject() { }
 
 protected:
-	void *operator new(size_t s) { DEBUG_CRASH(("This should be impossible")); return 0; }
-	void operator delete(void *p) { DEBUG_CRASH(("This should be impossible")); }
+	void *operator new(size_t s) noexcept { DEBUG_CRASH(("This should be impossible")); return 0; }
+	void operator delete(void *p) noexcept { DEBUG_CRASH(("This should be impossible")); }
 
 protected:
 
@@ -851,10 +855,10 @@ extern void userMemoryAdjustPoolSize(const char *poolName, Int& initialAllocatio
 	#define _OPERATOR_NEW_DEFINED_
 
 	extern void * __cdecl operator new		(size_t size);
-	extern void __cdecl operator delete		(void *p);
+	extern void __cdecl operator delete		(void *p) noexcept;
 
 	extern void * __cdecl operator new[]	(size_t size);
-	extern void __cdecl operator delete[]	(void *p);
+	extern void __cdecl operator delete[]	(void *p) noexcept;
 
 	// additional overloads to account for VC/MFC funky versions
 	extern void* __cdecl operator new(size_t nSize, const char *, int);

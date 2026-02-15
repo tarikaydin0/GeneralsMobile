@@ -1,0 +1,71 @@
+ninja: Entering directory `C:\Users\devacc\Desktop\repo\generals\Android\app\.cxx\Debug\3a5l4u6q\arm64-v8a'
+[1/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/GLESIndexBuffer8.cpp.o
+[2/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/GLESVertexBuffer8.cpp.o
+[3/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/GLESSurface8.cpp.o
+[4/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/d3dx8math.cpp.o
+[5/2314] Building CXX object CMakeFiles/liblzhl.dir/_deps/lzhl-src/CompLibHeader/Lzhl.cpp.o
+[6/2314] Building CXX object CMakeFiles/liblzhl.dir/_deps/lzhl-src/CompLibHeader/Lz.cpp.o
+[7/2314] Building CXX object CMakeFiles/liblzhl.dir/_deps/lzhl-src/CompLibHeader/Huff.cpp.o
+[8/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/darray.c.o
+[9/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsassert.c.o
+[10/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsavailable.c.o
+[11/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gscore.c.o
+[12/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/Direct3D8.cpp.o
+[13/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/GLESTexture8.cpp.o
+[14/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/GLESShader.cpp.o
+[15/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gscrypt.c.o
+[16/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsdebug.c.o
+[17/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsmemory.c.o
+[18/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatform.c.o
+[19/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformsocket.c.o
+[20/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gslargeint.c.o
+[21/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o
+FAILED: _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o 
+C:\Users\devacc\AppData\Local\Android\Sdk\ndk\26.1.10909125\toolchains\llvm\prebuilt\windows-x86_64\bin\clang.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/devacc/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DGSI_COMMON_DEBUG=1 -DGSI_DOMAIN_NAME=\"server.cnc-online.net\" -DGS_HTTPS -DGS_PEER -IC:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/include -IC:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/include/gamespy -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -pthread -MD -MT _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o -MF _deps\gamespy-build\src\common\CMakeFiles\gscommon.dir\gsplatformthread.c.o.d -o _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o -c C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/src/common/gsplatformthread.c
+In file included from C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/src/common/gsplatformthread.c:16:
+C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:14:9: warning: '_REENTRANT' macro redefined [-Wmacro-redefined]
+#define _REENTRANT
+        ^
+<built-in>:382:9: note: previous definition is here
+#define _REENTRANT 1
+        ^
+In file included from C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/src/common/gsplatformthread.c:16:
+C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:72:9: error: call to undeclared function 'pthread_cancel'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    if (pthread_cancel(id.thread) != PTHREAD_NO_ERROR) {
+        ^
+C:/Users/devacc/Desktop/repo/generals/Android/app/.cxx/Debug/3a5l4u6q/arm64-v8a/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:72:9: note: did you mean 'pthread_once'?
+C:/Users/devacc/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/pthread.h:258:5: note: 'pthread_once' declared here
+int pthread_once(pthread_once_t* _Nonnull __once, void (* _Nonnull __init_routine)(void));
+    ^
+1 warning and 1 error generated.
+[22/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsrc4.c.o
+[23/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformutil.c.o
+[24/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/Direct3DDevice8.cpp.o
+C:/Users/devacc/Desktop/repo/generals/Generals/Code/Libraries/Source/DX8Wrapper/Source/Direct3DDevice8.cpp:265:12: warning: 71 enumeration values not handled in switch: 'D3DRS_FILLMODE', 'D3DRS_SHADEMODE', 'D3DRS_LINEPATTERN'... [-Wswitch]
+    switch(State) {
+           ^~~~~
+C:/Users/devacc/Desktop/repo/generals/Generals/Code/Libraries/Source/DX8Wrapper/Source/Direct3DDevice8.cpp:352:13: warning: enumeration value 'D3DPT_FORCE_DWORD' not handled in switch [-Wswitch]
+    switch (PrimitiveType) {
+            ^~~~~~~~~~~~~
+C:/Users/devacc/Desktop/repo/generals/Generals/Code/Libraries/Source/DX8Wrapper/Source/Direct3DDevice8.cpp:695:63: warning: format specifies type 'unsigned int' but the argument has type 'DWORD' (aka 'unsigned long') [-Wformat]
+            LOGE("Error linking program (VS %u, PS %u):\n%s", vsHandle, psHandle, infoLog.data());
+                                            ~~                ^~~~~~~~
+                                            %lu
+C:/Users/devacc/Desktop/repo/generals/Generals/Code/Libraries/Source/DX8Wrapper/Source/Direct3DDevice8.cpp:9:67: note: expanded from macro 'LOGE'
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+                                                                  ^~~~~~~~~~~
+C:/Users/devacc/Desktop/repo/generals/Generals/Code/Libraries/Source/DX8Wrapper/Source/Direct3DDevice8.cpp:695:73: warning: format specifies type 'unsigned int' but the argument has type 'DWORD' (aka 'unsigned long') [-Wformat]
+            LOGE("Error linking program (VS %u, PS %u):\n%s", vsHandle, psHandle, infoLog.data());
+                                                   ~~                   ^~~~~~~~
+                                                   %lu
+C:/Users/devacc/Desktop/repo/generals/Generals/Code/Libraries/Source/DX8Wrapper/Source/Direct3DDevice8.cpp:9:67: note: expanded from macro 'LOGE'
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+                                                                  ^~~~~~~~~~~
+4 warnings generated.
+[25/2314] Building CXX object Generals/Code/Libraries/Source/DX8Wrapper/CMakeFiles/d3d8_wrapper.dir/Source/GLESShaderTranslator.cpp.o
+[26/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsssl.c.o
+[27/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gssha1.c.o
+[28/2314] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsstringutil.c.o
+[29/2314] Checking the git repository for changes...
+[30/2314] Linking CXX static library libliblzhl.a
+ninja: build stopped: subcommand failed.

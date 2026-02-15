@@ -45,6 +45,13 @@
 #include "surfaceclass.h"
 #include "texture.h"
 #include "vector2i.h"
+#include <cstring>
+#include <cctype>
+
+
+#ifdef _ANDROID
+// strupr is now provided by wwstring.h
+#endif
 
 static	SurfaceClass	*_surface;
 

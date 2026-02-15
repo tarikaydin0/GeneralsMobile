@@ -70,13 +70,8 @@ set(GAMEENGINEDEVICE_SRC
     Include/W3DDevice/GameLogic/W3DGameLogic.h
     Include/W3DDevice/GameLogic/W3DGhostObject.h
     Include/W3DDevice/GameLogic/W3DTerrainLogic.h
-#    Include/Win32Device/Common/Win32BIGFile.h
-#    Include/Win32Device/Common/Win32BIGFileSystem.h
-    Include/Win32Device/Common/Win32GameEngine.h
-#    Include/Win32Device/Common/Win32LocalFile.h
-#    Include/Win32Device/Common/Win32LocalFileSystem.h
-    Include/Win32Device/GameClient/Win32DIKeyboard.h
-    Include/Win32Device/GameClient/Win32Mouse.h
+    Include/W3DDevice/GameLogic/W3DTerrainLogic.h
+
 #    Source/MilesAudioDevice/MilesAudioManager.cpp
 #    Source/VideoDevice/Bink/BinkVideoPlayer.cpp
     Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp
@@ -168,15 +163,20 @@ set(GAMEENGINEDEVICE_SRC
     Source/W3DDevice/GameLogic/W3DGameLogic.cpp
     Source/W3DDevice/GameLogic/W3DGhostObject.cpp
     Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp
-#    Source/Win32Device/Common/Win32BIGFile.cpp
-#    Source/Win32Device/Common/Win32BIGFileSystem.cpp
-    Source/Win32Device/Common/Win32GameEngine.cpp
-#    Source/Win32Device/Common/Win32LocalFile.cpp
-#    Source/Win32Device/Common/Win32LocalFileSystem.cpp
-    Source/Win32Device/Common/Win32OSDisplay.cpp
-    Source/Win32Device/GameClient/Win32DIKeyboard.cpp
-    Source/Win32Device/GameClient/Win32Mouse.cpp
+    Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp
 )
+
+if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
+    list(APPEND GAMEENGINEDEVICE_SRC
+        Include/Win32Device/Common/Win32GameEngine.h
+        Include/Win32Device/GameClient/Win32DIKeyboard.h
+        Include/Win32Device/GameClient/Win32Mouse.h
+        Source/Win32Device/Common/Win32GameEngine.cpp
+        Source/Win32Device/Common/Win32OSDisplay.cpp
+        Source/Win32Device/GameClient/Win32DIKeyboard.cpp
+        Source/Win32Device/GameClient/Win32Mouse.cpp
+    )
+endif()
 
 add_library(g_gameenginedevice STATIC)
 set_target_properties(g_gameenginedevice PROPERTIES OUTPUT_NAME gameenginedevice)
@@ -206,3 +206,25 @@ target_link_libraries(g_gameenginedevice PUBLIC
     corei_gameenginedevice_public
     g_gameengine
 )
+
+if(ANDROID)
+    find_package(oboe REQUIRED CONFIG)
+    target_link_libraries(g_gameenginedevice PRIVATE oboe::oboe)
+
+    target_sources(g_gameenginedevice PRIVATE
+        Include/AndroidDevice/Common/AndroidGameEngine.h
+        Include/AndroidDevice/Common/AndroidUIScale.h
+        Include/AndroidDevice/Audio/AndroidAudioManager.h
+        Include/AndroidDevice/GameClient/AndroidKeyboard.h
+        Include/AndroidDevice/GameClient/AndroidTouchInput.h
+        Include/AndroidDevice/GameClient/AndroidVirtualControls.h
+        Include/AndroidDevice/GameClient/AndroidVideoPlayer.h
+        Source/AndroidDevice/Common/AndroidGameEngine.cpp
+        Source/AndroidDevice/Common/AndroidUIScale.cpp
+        Source/AndroidDevice/Common/AndroidOSDisplay.cpp
+        Source/AndroidDevice/Audio/AndroidAudioManager.cpp
+        Source/AndroidDevice/GameClient/AndroidTouchInput.cpp
+        Source/AndroidDevice/GameClient/AndroidVirtualControls.cpp
+        Source/AndroidDevice/GameClient/AndroidVideoPlayer.cpp
+    )
+endif()

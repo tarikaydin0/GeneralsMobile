@@ -21,6 +21,9 @@
 #include "bittype.h"
 #include <string.h>
 #include <ctype.h>
+#ifdef _ANDROID
+#include <wctype.h>
+#endif
 
 
 // Declaration
@@ -38,8 +41,10 @@ template<typename T> size_t strlcat_t(T *dst, const T *src, size_t dstsize);
 
 size_t strlcpy(char *dst, const char *src, size_t dstsize);
 size_t strlcat(char *dst, const char *src, size_t dstsize);
+#ifndef _ANDROID
 size_t wcslcpy(wchar_t *dst, const wchar_t *src, size_t dstsize);
 size_t wcslcat(wchar_t *dst, const wchar_t *src, size_t dstsize);
+#endif
 
 template<typename T> size_t strlmove_t(T *dst, const T *src, size_t dstsize);
 template<typename T> size_t strlmcat_t(T *dst, const T *src, size_t dstsize);
@@ -133,13 +138,19 @@ template<typename T> size_t strlcat_t(T *dst, const T *src, size_t dstsize)
 }
 
 #ifndef HAVE_STRLCPY
+#ifndef _ANDROID
 inline size_t strlcpy(char *dst, const char *src, size_t dstsize) { return strlcpy_t(dst, src, dstsize); }
 #endif
+#endif
 #ifndef HAVE_STRLCAT
+#ifndef _ANDROID
 inline size_t strlcat(char *dst, const char *src, size_t dstsize) { return strlcat_t(dst, src, dstsize); }
 #endif
+#endif
+#ifndef _ANDROID
 inline size_t wcslcpy(wchar_t *dst, const wchar_t *src, size_t dstsize) { return strlcpy_t(dst, src, dstsize); }
 inline size_t wcslcat(wchar_t *dst, const wchar_t *src, size_t dstsize) { return strlcat_t(dst, src, dstsize); }
+#endif
 
 // Templated strlmove. Prefer using this over strlcpy if dst and src overlap.
 // Moves src into dst until dstsize minus one. Always null terminates.

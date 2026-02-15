@@ -45,6 +45,7 @@
 
 
 #include "motchan.h"
+#include <cmath>
 #include "w3d_file.h"
 #include "chunkio.h"
 #include "Vector.h"
@@ -1069,7 +1070,7 @@ void AdaptiveDeltaMotionChannelClass::decompress(uint32 src_idx, float *srcdata,
 			float filter = filtertable[filter_index] * Scale;	// decompression filter
 
 			// data is grouped in sets of 16 nybbles
-			for (fi; fi < 16; fi++) {
+			for (; fi < 16; fi++) {
 
 				int pi = fi>>1;	// create packet index
 
@@ -1267,7 +1268,7 @@ return;
 	int i=0;
 	for (;i<count;i++) {
 		float value=Data[i];
-		if (_isnan(value)) value=0.0f;
+		if (std::isnan(value)) value=0.0f;
 		if (value>100000.0f) value=0.0f;
 		if (value<-100000.0f) value=0.0f;
 		Data[i]=value;

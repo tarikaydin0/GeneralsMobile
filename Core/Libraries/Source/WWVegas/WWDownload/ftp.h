@@ -23,7 +23,15 @@
 //#include "../resource.h"       // main symbols
 
 #include <cstddef>
+#ifdef WIN32
 #include <winsock.h>
+#else
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <unistd.h>
+#endif
 #include <Utility/stdio_adapter.h>
 
 #include "WWDownload/ftpdefs.h"

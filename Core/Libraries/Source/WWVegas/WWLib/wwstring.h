@@ -46,6 +46,18 @@
 #include <tchar.h>
 #endif
 
+#ifdef _ANDROID
+#include <ctype.h>
+#include <strings.h>
+
+inline char *strupr(char *s) {
+    char *p = s;
+    while ((*p = toupper(*p))) p++;
+    return s;
+}
+
+#endif
+
 
 
 //////////////////////////////////////////////////////////////////////

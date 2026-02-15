@@ -30,6 +30,67 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
 
+#if 0
+
+#include "GameClient/GameWindow.h"
+#include "GameClient/Gadget.h"
+#include "GameClient/GameClient.h"
+
+//-------------------------------------------------------------------------------------------------
+/** Input procedure for the control bar */
+//-------------------------------------------------------------------------------------------------
+WindowMsgHandledType ReplayControlInput( GameWindow *window, UnsignedInt msg,
+																			WindowMsgData mData1, WindowMsgData mData2 )
+{
+
+	return MSG_IGNORED;
+
+}
+
+//-------------------------------------------------------------------------------------------------
+/** System callback for the control bar parent */
+//-------------------------------------------------------------------------------------------------
+WindowMsgHandledType ReplayControlSystem( GameWindow *window, UnsignedInt msg,
+																			 WindowMsgData mData1, WindowMsgData mData2 )
+{
+	switch( msg )
+	{
+
+		//---------------------------------------------------------------------------------------------
+		case GBM_SELECTED:
+		{
+
+			break;
+
+		}
+
+		//---------------------------------------------------------------------------------------------
+		default:
+			return MSG_IGNORED;
+
+	}
+
+	return MSG_HANDLED;
+
+}
+
+#endif // 0
+
+
+////////////////////////////////////////////////////////////////////////////////
+//																																						//
+//  (c) 2001-2003 Electronic Arts Inc.																				//
+//																																						//
+////////////////////////////////////////////////////////////////////////////////
+
+// FILE: ReplayControls.cpp ///////////////////////////////////////////////////////////////////////
+// Author: Bryan Cleveland - December 2001
+// Desc: GUI Control box for the playback controls
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
+#include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
+
 #include "GameClient/GameWindow.h"
 #include "GameClient/Gadget.h"
 #include "GameClient/GameClient.h"

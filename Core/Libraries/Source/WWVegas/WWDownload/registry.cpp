@@ -23,10 +23,13 @@
 #include <string>
 
 #define WIN32_LEAN_AND_MEAN
+#ifdef WIN32
 #include <windows.h>
+#endif
 
 #include "Registry.h"
 
+#ifdef WIN32
 bool  getStringFromRegistry(HKEY root, std::string path, std::string key, std::string& val)
 {
 	HKEY handle;
@@ -110,9 +113,11 @@ bool setUnsignedIntInRegistry( HKEY root, std::string path, std::string key, uns
 
 	return (returnValue == ERROR_SUCCESS);
 }
+#endif
 
 bool GetStringFromRegistry(std::string path, std::string key, std::string& val)
 {
+#ifdef WIN32
 #if RTS_GENERALS
 	std::string fullPath = "SOFTWARE\\Electronic Arts\\EA Games\\Generals";
 #elif RTS_ZEROHOUR
@@ -126,10 +131,14 @@ bool GetStringFromRegistry(std::string path, std::string key, std::string& val)
 	}
 
 	return getStringFromRegistry(HKEY_CURRENT_USER, fullPath.c_str(), key.c_str(), val);
+#else
+	return false;
+#endif
 }
 
 bool GetUnsignedIntFromRegistry(std::string path, std::string key, unsigned int& val)
 {
+#ifdef WIN32
 #if RTS_GENERALS
 	std::string fullPath = "SOFTWARE\\Electronic Arts\\EA Games\\Generals";
 #elif RTS_ZEROHOUR
@@ -143,10 +152,14 @@ bool GetUnsignedIntFromRegistry(std::string path, std::string key, unsigned int&
 	}
 
 	return getUnsignedIntFromRegistry(HKEY_CURRENT_USER, fullPath.c_str(), key.c_str(), val);
+#else
+	return false;
+#endif
 }
 
 bool SetStringInRegistry( std::string path, std::string key, std::string val)
 {
+#ifdef WIN32
 #if RTS_GENERALS
 	std::string fullPath = "SOFTWARE\\Electronic Arts\\EA Games\\Generals";
 #elif RTS_ZEROHOUR
@@ -158,10 +171,14 @@ bool SetStringInRegistry( std::string path, std::string key, std::string val)
 		return true;
 
 	return setStringInRegistry( HKEY_CURRENT_USER, fullPath, key, val );
+#else
+	return false;
+#endif
 }
 
 bool SetUnsignedIntInRegistry( std::string path, std::string key, unsigned int val)
 {
+#ifdef WIN32
 #if RTS_GENERALS
 	std::string fullPath = "SOFTWARE\\Electronic Arts\\EA Games\\Generals";
 #elif RTS_ZEROHOUR
@@ -173,5 +190,8 @@ bool SetUnsignedIntInRegistry( std::string path, std::string key, unsigned int v
 		return true;
 
 	return setUnsignedIntInRegistry( HKEY_CURRENT_USER, fullPath, key, val );
+#else
+	return false;
+#endif
 }
 

@@ -51,6 +51,12 @@
 #include "Win32Device/GameClient/Win32Mouse.h"
 #include "W3DDevice/GameClient/W3DMouse.h"
 
+#ifdef _ANDROID
+#include "AndroidDevice/GameClient/AndroidKeyboard.h"
+#include "AndroidDevice/GameClient/AndroidTouchInput.h"
+#include "AndroidDevice/GameClient/AndroidVideoPlayer.h"
+#endif
+
 class ThingTemplate;
 
 extern Win32Mouse *TheWin32Mouse;
@@ -107,7 +113,11 @@ protected:
   /// Manager for display strings
 	virtual DisplayStringManager *createDisplayStringManager( void ) { return NEW W3DDisplayStringManager; }
 
+#ifdef _ANDROID
+	virtual VideoPlayerInterface *createVideoPlayer( void ) { return NEW AndroidVideoPlayer; }
+#else
 	virtual VideoPlayerInterface *createVideoPlayer( void ) { return NEW BinkVideoPlayer; }
+#endif
 	/// factory for creating the TerrainVisual
 	virtual TerrainVisual *createTerrainVisual( void ) { return NEW W3DTerrainVisual; }
 
@@ -115,11 +125,23 @@ protected:
 
 };
 
-inline Keyboard *W3DGameClient::createKeyboard( void ) { return NEW DirectInputKeyboard; }
+inline Keyboard *W3DGameClient::createKeyboard( void ) 
+{ 
+#ifdef _ANDROID
+    return new AndroidKeyboard;
+#else
+    return NEW DirectInputKeyboard; 
+#endif
+}
+
 inline Mouse *W3DGameClient::createMouse( void )
 {
+#ifdef _ANDROID
+    return new AndroidTouchInput;
+#else
 	//return new DirectInputMouse;
 	Win32Mouse * mouse = NEW W3DMouse;
 	TheWin32Mouse = mouse;   ///< global cheat for the WndProc()
 	return mouse;
+#endif
 }

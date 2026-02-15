@@ -43,8 +43,10 @@
 #endif
 
 #include "windows.h"
+#ifndef _ANDROID
 #include "windowsx.h"
 #include "vfw.h"
+#endif
 
 #if defined (_MSC_VER)
 #pragma warning (pop)
@@ -54,6 +56,33 @@
 //
 //////////////////////////////////////////////////////////////////////
 
+
+
+#ifdef _ANDROID
+// Stub implementation for Android
+class FrameGrabClass
+{
+public:
+	enum MODE {
+		RAW,
+		AVI
+	};
+
+	FrameGrabClass(const char *filename, MODE mode, int width, int height, int bitdepth, float framerate ) {}
+	virtual ~FrameGrabClass() {}
+
+	void ConvertGrab(void *BitmapPointer) {}
+	void Grab(void *BitmapPointer) {}
+
+	long * GetBuffer()			{ return nullptr; }
+	float	GetFrameRate()			{ return 0.0f; }
+
+protected:
+	const char *Filename;
+	float			FrameRate;
+	MODE Mode;
+};
+#else
 class FrameGrabClass
 {
 public:
@@ -97,3 +126,4 @@ protected:
 	void ConvertFrame(void *BitmapPointer);
 
 };
+#endif

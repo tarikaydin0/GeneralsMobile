@@ -39,29 +39,90 @@
 
 typedef unsigned char	uint8;
 typedef unsigned short	uint16;
+#if defined(__ANDROID__) || defined(__linux__)
+#include <stdint.h>
+typedef uint32_t	uint32;
+#else
 typedef unsigned long	uint32;
+#endif
 typedef unsigned int    uint;
 
 typedef signed char		sint8;
 typedef signed short		sint16;
+#if defined(__ANDROID__) || defined(__linux__)
+typedef int32_t		sint32;
+#else
 typedef signed long		sint32;
+#endif
 typedef signed int      sint;
 
 typedef float				float32;
 typedef double				float64;
 
+#if defined(__ANDROID__) || defined(__linux__)
+typedef uint32_t   DWORD;
+#else
 typedef unsigned long   DWORD;
+#endif
 typedef unsigned short	WORD;
 typedef unsigned char   BYTE;
 typedef int             BOOL;
 typedef unsigned short	USHORT;
 typedef const char *		LPCSTR;
 typedef unsigned int    UINT;
+#if defined(__ANDROID__) || defined(__linux__)
+typedef uint32_t   ULONG;
+#else
 typedef unsigned long   ULONG;
+#endif
 
 #if defined(_MSC_VER) && _MSC_VER < 1300
 #ifndef _WCHAR_T_DEFINED
 typedef unsigned short wchar_t;
 #define _WCHAR_T_DEFINED
+#endif
+#endif
+
+#if defined(__ANDROID__) || defined(__linux__)
+#include <stdint.h>
+#ifndef _WINDOWS_
+#ifndef _WINDOWS_H
+#ifndef _WINDOWS_H_
+#ifndef LONG
+typedef int32_t LONG;
+#endif
+#endif
+#endif
+#endif
+#ifndef INT
+typedef int INT;
+#endif
+#ifndef HWND
+typedef void* HWND;
+#endif
+#ifndef GUID_DEFINED
+#define GUID_DEFINED
+typedef struct _GUID {
+    uint32_t Data1;
+    uint16_t Data2;
+    uint16_t Data3;
+    uint8_t  Data4[8];
+} GUID;
+#endif
+
+#ifndef LPGUID
+typedef GUID* LPGUID;
+#endif
+
+#ifndef REFGUID
+#ifdef __cplusplus
+#define REFGUID const GUID &
+#else
+#define REFGUID const GUID * const
+#endif
+#endif
+
+#ifndef LPCGUID
+typedef const GUID* LPCGUID;
 #endif
 #endif

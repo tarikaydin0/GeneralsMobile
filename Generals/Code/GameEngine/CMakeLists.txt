@@ -723,19 +723,19 @@ set(GAMEENGINE_SRC
     Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp
     Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp
     Source/GameClient/GUI/GUICallbacks/Menus/SkirmishMapSelectMenu.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLLadderScreen.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLLocaleSelectPopup.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLStatusMenu.cpp
-    Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLLadderScreen.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLLocaleSelectPopup.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLStatusMenu.cpp
+#    Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp
     Source/GameClient/GUI/GUICallbacks/MessageBox.cpp
     Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp
     Source/GameClient/GUI/HeaderTemplate.cpp
@@ -1015,11 +1015,11 @@ set(GAMEENGINE_SRC
 #    Source/GameNetwork/FrameMetrics.cpp
 #    Source/GameNetwork/GameInfo.cpp
 #    Source/GameNetwork/GameMessageParser.cpp
-    #Source/GameNetwork/GameSpy.cpp
-    #Source/GameNetwork/GameSpyChat.cpp
-    #Source/GameNetwork/GameSpyGameInfo.cpp
-    #Source/GameNetwork/GameSpyGP.cpp
-    #Source/GameNetwork/GameSpyPersistentStorage.cpp
+#    #Source/GameNetwork/GameSpy.cpp
+#    #Source/GameNetwork/GameSpyChat.cpp
+#    #Source/GameNetwork/GameSpyGameInfo.cpp
+#    #Source/GameNetwork/GameSpyGP.cpp
+#    #Source/GameNetwork/GameSpyPersistentStorage.cpp
 #    Source/GameNetwork/GameSpy/Chat.cpp
 #    Source/GameNetwork/GameSpy/GSConfig.cpp
 #    Source/GameNetwork/GameSpy/LadderDefs.cpp

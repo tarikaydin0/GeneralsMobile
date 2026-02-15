@@ -98,6 +98,70 @@
 #include "shattersystem.h"
 #include "textureloader.h"
 #include "statistics.h"
+
+#ifdef _ANDROID
+typedef struct tagBITMAPFILEHEADER {
+    WORD  bfType;
+    DWORD bfSize;
+    WORD  bfReserved1;
+    WORD  bfReserved2;
+    DWORD bfOffBits;
+} BITMAPFILEHEADER, *LPBITMAPFILEHEADER, *PBITMAPFILEHEADER;
+
+typedef struct tagBITMAPINFOHEADER {
+    DWORD biSize;
+    LONG  biWidth;
+    LONG  biHeight;
+    WORD  biPlanes;
+    WORD  biBitCount;
+    DWORD biCompression;
+    DWORD biSizeImage;
+    LONG  biXPelsPerMeter;
+    LONG  biYPelsPerMeter;
+    DWORD biClrUsed;
+    DWORD biClrImportant;
+} BITMAPINFOHEADER, *LPBITMAPINFOHEADER, *PBITMAPINFOHEADER;
+
+typedef int32_t FXPT2DOT30;
+
+typedef struct tagCIEXYZ {
+    FXPT2DOT30 ciexyzX;
+    FXPT2DOT30 ciexyzY;
+    FXPT2DOT30 ciexyzZ;
+} CIEXYZ;
+
+typedef struct tagCIEXYZTRIPLE {
+    CIEXYZ ciexyzRed;
+    CIEXYZ ciexyzGreen;
+    CIEXYZ ciexyzBlue;
+} CIEXYZTRIPLE;
+
+typedef struct {
+    DWORD        bV4Size;
+    LONG         bV4Width;
+    LONG         bV4Height;
+    WORD         bV4Planes;
+    WORD         bV4BitCount;
+    DWORD        bV4V4Compression;
+    DWORD        bV4SizeImage;
+    LONG         bV4XPelsPerMeter;
+    LONG         bV4YPelsPerMeter;
+    DWORD        bV4ClrUsed;
+    DWORD        bV4ClrImportant;
+    DWORD        bV4RedMask;
+    DWORD        bV4GreenMask;
+    DWORD        bV4BlueMask;
+    DWORD        bV4AlphaMask;
+    DWORD        bV4CSType;
+    CIEXYZTRIPLE bV4Endpoints;
+    DWORD        bV4GammaRed;
+    DWORD        bV4GammaGreen;
+    DWORD        bV4GammaBlue;
+} BITMAPV4HEADER, *LPBITMAPV4HEADER, *PBITMAPV4HEADER;
+
+#define BI_RGB 0L
+#define BI_BITFIELDS 3L
+#endif
 #include "pointgr.h"
 #include "ffactory.h"
 #include "INI.h"

@@ -42,6 +42,10 @@
 #include "dx8wrapper.h"
 
 
+
+// Render2DSentence is heavily dependent on Windows GDI and is disabled for Android.
+#ifndef _ANDROID
+
 ////////////////////////////////////////////////////////////////////////////////////
 //	Local constants
 ////////////////////////////////////////////////////////////////////////////////////
@@ -53,6 +57,7 @@
 //	Render2DSentenceClass
 //
 ////////////////////////////////////////////////////////////////////////////////////
+
 Render2DSentenceClass::Render2DSentenceClass (void) :
 	Font (nullptr),
 	Location (0.0F,0.0F),
@@ -77,6 +82,7 @@ Render2DSentenceClass::Render2DSentenceClass (void) :
 	Shader = Render2DClass::Get_Default_Shader ();
 	return ;
 }
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -1784,3 +1790,5 @@ FontCharsClass::Free_Character_Arrays (void)
 
 	return ;
 }
+
+#endif // !_ANDROID

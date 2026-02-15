@@ -42,7 +42,14 @@
 #include "StdDevice/Common/StdBIGFileSystem.h"
 #include "Utility/endian_compat.h"
 
+#if !defined(_WIN32) && (defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)) || defined(__ANDROID__))
+#include <strings.h>
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
+#endif
+
 static const char *BIGFileIdentifier = "BIGF";
+
 
 StdBIGFileSystem::StdBIGFileSystem() : ArchiveFileSystem() {
 }

@@ -40,6 +40,7 @@
 #include "win.h"		// for lstrcpy, can this be improved?
 #include "assetmgr.h"
 #include "texture.h"
+#include <cstring>
 
 #ifndef SAFE_DELETE
 #define SAFE_DELETE(pointer) { delete pointer; pointer = nullptr; }
@@ -299,7 +300,7 @@ ParticleEmitterDefClass::Set_Name (const char *pname)
 void
 ParticleEmitterDefClass::Set_Texture_Filename (const char *pname)
 {
-	::lstrcpy (m_Info.TextureFilename, pname);
+	std::strcpy (m_Info.TextureFilename, pname);
 	Normalize_Filename ();
 	return ;
 }
@@ -313,7 +314,7 @@ void
 ParticleEmitterDefClass::Normalize_Filename (void)
 {
 	TCHAR path[MAX_PATH];
-	::lstrcpy (path, m_Info.TextureFilename);
+	std::strcpy (path, m_Info.TextureFilename);
 
 	// Find the last occurrence of the directory deliminator
 	LPCTSTR filename = ::strrchr (path, '\\');
@@ -323,7 +324,7 @@ ParticleEmitterDefClass::Normalize_Filename (void)
 		filename ++;
 
 		// Now copy the filename protion of the path to the structure
-		::lstrcpy (m_Info.TextureFilename, filename);
+		std::strcpy (m_Info.TextureFilename, filename);
 	}
 
 	return ;
@@ -1201,7 +1202,7 @@ ParticleEmitterDefClass::Save_User_Data (ChunkSaveClass &chunk_save)
 	// Begin a chunk that contains user information
 	if (chunk_save.Begin_Chunk (W3D_CHUNK_EMITTER_USER_DATA) == TRUE) {
 
-		DWORD string_len = m_pUserString ? (::lstrlen (m_pUserString) + 1) : 0;
+		DWORD string_len = m_pUserString ? (std::strlen (m_pUserString) + 1) : 0;
 
 		// Fill the header structure
 		W3dEmitterUserInfoStruct user_info = { 0 };

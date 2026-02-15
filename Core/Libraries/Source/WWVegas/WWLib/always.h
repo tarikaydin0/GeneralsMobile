@@ -35,16 +35,13 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #pragma once
-
-#include "WWCommon.h"
-#include "WWDefines.h"
-
+#include <Utility/compat.h>
+#include <Utility/stdint_adapter.h>
 #include <assert.h>
 #include <new>
 
-// TheSuperHackers @build feliwir 17/04/2025 include utility macros for cross-platform compatibility
-#include <Utility/compat.h>
-#include <Utility/stdint_adapter.h>
+#include "WWCommon.h"
+#include "WWDefines.h"
 
 // Disable warning about exception handling not being enabled. It's used as part of STL - in a part of STL we don't use.
 #pragma warning(disable : 4530)
@@ -82,17 +79,17 @@
 	#define _OPERATOR_NEW_DEFINED_
 
 	extern void * __cdecl operator new		(size_t size);
-	extern void __cdecl operator delete		(void *p);
+	extern void __cdecl operator delete		(void *p) _NOEXCEPT;
 
 	extern void * __cdecl operator new[]	(size_t size);
-	extern void __cdecl operator delete[]	(void *p);
+	extern void __cdecl operator delete[]	(void *p) _NOEXCEPT;
 
 	// additional overloads to account for VC/MFC funky versions
 	extern void* __cdecl operator new			(size_t nSize, const char *, int);
-	extern void __cdecl operator delete		(void *, const char *, int);
+	extern void __cdecl operator delete		(void *, const char *, int) _NOEXCEPT;
 
 	extern void* __cdecl operator new[]		(size_t nSize, const char *, int);
-	extern void __cdecl operator delete[]	(void *, const char *, int);
+	extern void __cdecl operator delete[]	(void *, const char *, int) _NOEXCEPT;
 
 #if defined(_MSC_VER) && _MSC_VER < 1300
 	// additional overloads for 'placement new'
